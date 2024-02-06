@@ -20,7 +20,7 @@ function HomeProduct() {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5 w-2/3 mx-auto relative">
             {product && product.map(itemProduct => (
-                <div key={itemProduct.id} className="bg-white rounded-lg overflow-hidden shadow-md">
+                <div key={itemProduct.id} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-regal-blue cursor-pointer">
                     <img src={itemProduct.img} alt={itemProduct.name} className="w-full h-64 object-cover" />
                     <div className="p-4">
                         <h2 className="text-lg font-semibold mb-2">{itemProduct.name}</h2>

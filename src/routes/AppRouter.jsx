@@ -4,6 +4,7 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import AuthContext from '../contexts/AuthContext'
 import Home from '../components/Home'
+import Dashboard from '../components/Dashboard'
 
 const userRouter = createBrowserRouter([
     {
@@ -15,7 +16,8 @@ const userRouter = createBrowserRouter([
             { index: true, element: <Login /> },
             { path: '/login', element: <Login /> },
             { path: '/register', element: <Register /> },
-            { path: '/home', element: <Home /> }
+            { path: '/home', element: <Home /> },
+            { path: '*', element: <h3> PAGE NOT FOUND</h3> }
         ]
     }
 ])
@@ -30,7 +32,9 @@ const adminRouter = createBrowserRouter([
             { index: true, element: <Login /> },
             { path: '/login', element: <Login /> },
             { path: '/register', element: <Register /> },
-            { path: '/home', element: <Home /> }
+            { path: '/home', element: <Home /> },
+            { path: '/dashboard', element: <Dashboard /> },
+            { path: '*', element: <h3> PAGE NOT FOUND</h3> }
         ]
     }
 ])

@@ -25,7 +25,7 @@ function ProductContextProvider(props) {
     useEffect(() => {
         const getCategory = async () => {
             try {
-                const rs = await axios.get('http://localhost:8000/product/category')
+                const rs = await axios.get('http://localhost:8000/category')
                 setCategory(rs.data)
 
             } catch (error) {
