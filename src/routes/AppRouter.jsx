@@ -5,9 +5,6 @@ import Register from '../components/Register'
 import AuthContext from '../contexts/AuthContext'
 import Home from '../components/Home'
 import Dashboard from '../components/Dashboard'
-import ManageCategory from '../components/ManageCategory'
-import ManageUser from '../components/ManageUser'
-import ManageProduct from '../components/ManageProduct'
 
 const userRouter = createBrowserRouter([
     {

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryContext'
-import { useNavigate } from 'react-router-dom'
 
 export default function ManageCatetoey() {
     return (
@@ -11,9 +10,8 @@ export default function ManageCatetoey() {
 }
 
 function Category() {
-
-    const { category } = useContext(CategoryContext)
-    const [showForm, setShowForm] = useState(false);
+    const { getCategory } = useContext(CategoryContext)
+    const [showForm, setShowForm] = useState(false)
 
     const toggleForm = () => {
         setShowForm(!showForm);
@@ -28,9 +26,12 @@ function Category() {
                 </div>
             </div>
             <div className="flex flex-col gap-4">
-                {category?.map((itemCategory) => (
-                    <div key={itemCategory.id} className="bg-white p-4 rounded-lg shadow-md flex items-center">
+                {getCategory?.map((itemCategory) => (
+                    <div key={itemCategory.id} className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between">
                         <h2 className="text-lg font-semibold">{itemCategory.name}</h2>
+                        <button>
+                            <i className="fa-regular fa-pen-to-square"></i>
+                        </button>
                     </div>
                 ))}
             </div>
@@ -39,44 +40,34 @@ function Category() {
     )
 }
 
-function FormCategory() {
-    // const navigate = useNavigate()
+function FormCategory({ onClose }) {
+
+    const { hdlAddNewCategory } = useContext(CategoryContext)
     const [input, setInput] = useState({
         name: ''
     })
 
-    const hdlAdd = (e) => {
+    const hdlChange = (e) => {
         setInput(prv => ({ ...prv, [e.target.name]: e.target.value }))
     }
 
-    const hdlSubmit = async (e) => {
+    const hdlSubmit = (e) => {
         e.preventDefault()
-        try {
-            const rs = await axios.post('http://localhost:8000/auth/login', input)
-
-            // if (rs.status === 200) {
-            //     navigate('/dashboard')
-            // }
-        } catch (error) {
-            alert(error.message)
-        }
-
+        hdlAddNewCategory(input)
     }
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white rounded-3xl p-8 shadow-lg border-regal-blue border-2 w-80">
-                <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-4xl font-bold text-center text-dark-blue">Add Category</h1>
-                    <button onClick={onClose} className="text-gray-400 hover:text-gray-600 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                <div className="flex justify-center items-center mb-6 relative">
+                    <h1 className="text-2xl font-bold text-dark-blue">Add Category</h1>
+                    <button onClick={onClose} className="text-gray-400 hover:text-gray-600 focus:outline-none absolute -top-7 -right-4">
+                        <i className="fa-solid fa-x"></i>
                     </button>
                 </div>
                 <form onSubmit={hdlSubmit}>
                     <div className="mb-4">
-                        <input name="name" value={input.name} onChange={hdlAdd} placeholder="Name" type="text"
+                        <input name="name" value={input.name} onChange={hdlChange} placeholder="Name" type="text"
                             className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
                         />
                     </div>
