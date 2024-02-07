@@ -14,12 +14,15 @@ export default function Dashboard() {
     }
 
     return (
-        <div className='relative'>
+        <div>
             <Navbar />
-            <Sidebar changeContent={hdlLink} />
-            <div className='absolute top-1/2 right-1/3'>
-                {content === 'Product' ? <ManageProduct /> : content === 'User' ? <ManageUser /> : <ManageCatetoey />}
+            <div className='justify-between flex items-center relative'>
+                <Sidebar changeContent={hdlLink} />
+                <div className='absolute top-10 left-72 mx-10 w-2/3'>
+                    {content === 'Product' ? <ManageProduct /> : content === 'Category' ? <ManageCatetoey /> : <ManageUser />}
+                </div>
             </div>
         </div>
+
     )
 }

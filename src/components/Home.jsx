@@ -1,20 +1,24 @@
 import React, { useContext } from 'react'
 import Navbar from './Navbar'
 import ProductContext, { ProductContextProvider } from "../contexts/ProductContext"
+import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryContext'
 
 export default function Home() {
     return (
         <>
             <Navbar />
-            <ProductContextProvider>
-                <HomeProduct />
-            </ProductContextProvider>
+            <CategoryContextProvider>
+                <ProductContextProvider>
+                    <HomeProduct />
+                </ProductContextProvider>
+            </CategoryContextProvider>
         </>
     )
 }
 
 function HomeProduct() {
-    const { product, category } = useContext(ProductContext)
+    const { product } = useContext(ProductContext)
+    const { category } = useContext(CategoryContext)
     const rsCategory = category ? category.map(el => el) : []
 
     return (
