@@ -18,6 +18,18 @@ function CategoryContextProvider(props) {
 
     }
 
+    const hdlUpdateCategory = async (category) => {
+        try {
+            const rs = await axios.patch(`http://localhost:8000/category/updateCate/:${category.id}`, category.name)
+            if (rs.status === 200) {
+                alert('Update Success')
+            }
+        } catch (error) {
+            alert(error.message)
+        }
+
+    }
+
     useEffect(() => {
         const getCategory = async () => {
             try {
@@ -35,7 +47,7 @@ function CategoryContextProvider(props) {
 
 
     return (
-        <CategoryContext.Provider value={{ getCategory, setGetCategory, hdlAddNewCategory }}>
+        <CategoryContext.Provider value={{ getCategory, setGetCategory, hdlAddNewCategory, hdlUpdateCategory }}>
             {props.children}
         </CategoryContext.Provider>
     );
