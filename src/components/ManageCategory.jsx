@@ -11,98 +11,78 @@ export default function ManageCatetoey() {
 
 
 function Category() {
-    const { getCategory, hdlUpdateCategory } = useContext(CategoryContext)
+    const { getCategory } = useContext(CategoryContext)
     const [showForm, setShowForm] = useState(false)
-    const [isUpdateCategory, setIsUpdateCategory] = useState(false)
-    const [updatedCategory, setUpdatedCategory] = useState('')
 
     const toggleAddForm = () => {
         setShowForm(!showForm)
     }
+
+    return (
+        <div className="bg-gray-200 max-h-fit rounded-lg p-6 shadow-md relative">
+            <div className="flex justify-between items-center">
+                <h1 className="text-2xl font-bold mb-4">Manage Category</h1>
+                <div className="shadow-md rounded-full h-10 w-10 bg-white text-2xl justify-center items-center flex hover:bg-dark-blue hover:text-white mb-3 cursor-pointer" onClick={toggleAddForm}>
+                    <i className="fa-solid fa-plus"></i>
+                </div>
+            </div>
+            <div>
+                {getCategory?.map((item) => (
+                    <CategoryItem key={item.id} category={item} />
+                ))
+                }
+            </div>
+            {showForm && <FormCategory onClose={toggleAddForm} />}
+        </div>
+    )
+}
+
+function CategoryItem({ category }) {
+
+    const { hdlUpdateCategory, hdlDeleteCategory } = useContext(CategoryContext)
+    const [isUpdateCategory, setIsUpdateCategory] = useState(false)
+    const [updatedCategory, setUpdatedCategory] = useState(category.name)
 
     const toggleUpdateForm = () => {
         setIsUpdateCategory(!isUpdateCategory);
     }
 
     const hdlUpdate = () => {
-        // console.log(updatedCategory)
-        // hdlUpdateCategory(updatedCategory)
+        hdlUpdateCategory(category.id, updatedCategory)
+        setIsUpdateCategory(false)
     }
 
+    const hdlDelete = () => {
+        hdlDeleteCategory(category.id)
+    }
 
     const cancelUpdate = () => {
-        setIsUpdateCategory(false);
+        setUpdatedCategory(category.name)
+        setIsUpdateCategory(false)
     }
 
-
     return (
-        <>
-            {getCategory?.map((itemCategory) => (
-                <div key={itemCategory.id}>
-                    {!isUpdateCategory ? (
-                        <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-                            <div className='flex items-center justify-between'>
-                                <h2 className="text-lg font-semibold">{itemCategory.name}</h2>
-                                <div className="flex gap-3 text-lg text-dark-blue">
-                                    <i onClick={toggleUpdateForm} className="fa-regular fa-pen-to-square hover:text-blue-300 cursor-pointer"></i>
-                                    <i className="fa-solid fa-trash hover:text-red-600 cursor-pointer"></i>
-                                </div>
-                            </div>
+        <div>
+            <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+                {!isUpdateCategory ? (
+                    <div className='flex items-center justify-between'>
+                        <h2 className="text-lg font-semibold">{category.name}</h2>
+                        <div className="flex gap-3 text-lg text-dark-blue">
+                            <i onClick={toggleUpdateForm} className="fa-regular fa-pen-to-square hover:text-blue-300 cursor-pointer"></i>
+                            <i onClick={hdlDelete} className="fa-solid fa-trash hover:text-red-600 cursor-pointer"></i>
                         </div>
-                    ) : (
-                        <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-                            <div className="relative">
-                                <input value={updatedCategory} onChange={e => setUpdatedCategory(e.target.value)} className="bg-white h-10 px-3 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200" />
-                                <div className="absolute top-2 right-2 flex gap-3 text-lg text-dark-blue">
-                                    <span onClick={hdlUpdate} className="cursor-pointer hover:text-blue-300">Save</span>
-                                    <span onClick={cancelUpdate} className="cursor-pointer hover:text-red-600">Cancel</span>
-                                </div>
-                            </div>
+                    </div>
+                ) : (
+                    <div className="relative">
+                        <input value={updatedCategory} onChange={e => setUpdatedCategory(e.target.value)} className="bg-white h-10 px-3 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                        <div className="absolute top-2 right-2 flex gap-3 text-lg text-dark-blue">
+                            <span onClick={hdlUpdate} className="cursor-pointer hover:text-blue-300">Save</span>
+                            <span onClick={cancelUpdate} className="cursor-pointer hover:text-red-600">Cancel</span>
                         </div>
-                    )}
-                </div>
-            ))
-            }
-            {showForm && <FormCategory onClose={toggleAddForm} />}
-        </>
-
-
-
-
-
-
-        // <div className="bg-gray-200 max-h-fit rounded-lg p-6 shadow-md relative">
-        //     <div className="flex justify-between items-center">
-        //         <h1 className="text-2xl font-bold mb-4">Manage Category</h1>
-        //         <div className="shadow-md rounded-full h-10 w-10 bg-white text-2xl justify-center items-center flex hover:bg-dark-blue hover:text-white mb-3 cursor-pointer" onClick={toggleAddForm}>
-        //             <i className="fa-solid fa-plus"></i>
-        //         </div>
-        //     </div>
-        //     {getCategory?.map((itemCategory) => (
-        //         <div key={itemCategory.id}>
-        //             <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-        //                 {!isUpdateCategory ? (
-        //                     <div className='flex items-center justify-between'>
-        //                         <h2 className="text-lg font-semibold">{itemCategory.name}</h2>
-        //                         <div className="flex gap-3 text-lg text-dark-blue">
-        //                             <i onClick={toggleUpdateForm} className="fa-regular fa-pen-to-square hover:text-blue-300 cursor-pointer"></i>
-        //                             <i className="fa-solid fa-trash hover:text-red-600 cursor-pointer"></i>
-        //                         </div>
-        //                     </div>
-        //                 ) : (
-        //                     <div className="relative">
-        //                         <input value={updatedCategory} onChange={e => setUpdatedCategory(e.target.value)} className="bg-white h-10 px-3 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200" />
-        //                         <div className="absolute top-2 right-2 flex gap-3 text-lg text-dark-blue">
-        //                             <span onClick={hdlUpdate} className="cursor-pointer hover:text-blue-300">Save</span>
-        //                             <span onClick={cancelUpdate} className="cursor-pointer hover:text-red-600">Cancel</span>
-        //                         </div>
-        //                     </div>
-        //                 )}
-        //             </div>
-        //         </div>
-        //     ))}
-        //     {showForm && <FormCategory onClose={toggleAddForm} />}
-        // </div>
+                    </div>
+                )}
+            </div>
+        </div>
     )
 }
 
@@ -120,6 +100,7 @@ function FormCategory({ onClose }) {
     const hdlSubmit = (e) => {
         e.preventDefault()
         hdlAddNewCategory(input)
+        onClose()
     }
 
     return (

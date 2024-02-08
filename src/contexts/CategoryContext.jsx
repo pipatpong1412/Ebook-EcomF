@@ -5,25 +5,34 @@ const CategoryContext = createContext();
 
 function CategoryContextProvider(props) {
     const [getCategory, setGetCategory] = useState(null)
+    const [trigger, setTrigger] = useState(false)
 
     const hdlAddNewCategory = async (newCategory) => {
         try {
-            const rs = await axios.post('http://localhost:8000/category/newCate', newCategory)
-            if (rs.status === 200) {
-                alert('Add Success')
-            }
+            await axios.post('http://localhost:8000/category/newCate', newCategory)
+            .then(res => setTrigger(prv =>!prv))
+
         } catch (error) {
             alert(error.message)
         }
 
     }
 
-    const hdlUpdateCategory = async (category) => {
+    const hdlDeleteCategory = async (id) => {
         try {
-            const rs = await axios.patch(`http://localhost:8000/category/updateCate/:${category.id}`, category.name)
-            if (rs.status === 200) {
-                alert('Update Success')
-            }
+            await axios.delete(`http://localhost:8000/category/del/${id}`)
+            .then(res => setTrigger(prv =>!prv))
+
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    const hdlUpdateCategory = async (id, category) => {
+        try {
+            await axios.patch(`http://localhost:8000/category/updateCate/${id}`, {name: category})
+            .then(res => setTrigger(prv =>!prv))
+            
         } catch (error) {
             alert(error.message)
         }
@@ -43,11 +52,11 @@ function CategoryContextProvider(props) {
 
         getCategory()
 
-    }, [])
+    }, [trigger])
 
 
     return (
-        <CategoryContext.Provider value={{ getCategory, setGetCategory, hdlAddNewCategory, hdlUpdateCategory }}>
+        <CategoryContext.Provider value={{ getCategory, setGetCategory, hdlAddNewCategory, hdlUpdateCategory, hdlDeleteCategory }}>
             {props.children}
         </CategoryContext.Provider>
     );
