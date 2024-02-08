@@ -5,7 +5,7 @@ const ProductContext = createContext();
 
 function ProductContextProvider(props) {
     const [product, setProduct] = useState(null)
-    const [category, setCategory] = useState(null)
+    const [trigger, setTrigger] = useState(false)
 
     useEffect(() => {
         const getProduct = async () => {
@@ -14,31 +14,28 @@ function ProductContextProvider(props) {
                 setProduct(rs.data)
 
             } catch (error) {
-                console.error(error)
+                alert(error.message)
             }
         }
 
         getProduct()
 
-    }, [])
+    }, [trigger])
 
-    useEffect(() => {
-        const getCategory = async () => {
-            try {
-                const rs = await axios.get('http://localhost:8000/category')
-                setCategory(rs.data)
 
-            } catch (error) {
-                console.error(error)
-            }
+    const createProduct = async (newProduct) => {
+        try {
+            await axios.post('http://localhost:8000/product/newProduct', newProduct)
+            .then(res => setTrigger(prv =>!prv))
+
+        } catch (error) {
+            alert(error.message)
         }
+    }
 
-        getCategory()
-
-    }, [])
 
     return (
-        <ProductContext.Provider value={{ product, setProduct, category, setCategory }}>
+        <ProductContext.Provider value={{ product, setProduct, createProduct }}>
             {props.children}
         </ProductContext.Provider>
     );

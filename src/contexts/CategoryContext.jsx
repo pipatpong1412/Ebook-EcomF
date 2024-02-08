@@ -4,7 +4,7 @@ import React, { createContext, useEffect, useState } from "react";
 const CategoryContext = createContext();
 
 function CategoryContextProvider(props) {
-    const [getCategory, setGetCategory] = useState(null)
+    const [category, setCategory] = useState(null)
     const [trigger, setTrigger] = useState(false)
 
     const hdlAddNewCategory = async (newCategory) => {
@@ -43,7 +43,7 @@ function CategoryContextProvider(props) {
         const getCategory = async () => {
             try {
                 const rs = await axios.get('http://localhost:8000/category')
-                setGetCategory(rs.data)
+                setCategory(rs.data)
 
             } catch (error) {
                 console.error(error)
@@ -56,7 +56,7 @@ function CategoryContextProvider(props) {
 
 
     return (
-        <CategoryContext.Provider value={{ getCategory, setGetCategory, hdlAddNewCategory, hdlUpdateCategory, hdlDeleteCategory }}>
+        <CategoryContext.Provider value={{ category, setCategory, hdlAddNewCategory, hdlUpdateCategory, hdlDeleteCategory }}>
             {props.children}
         </CategoryContext.Provider>
     );

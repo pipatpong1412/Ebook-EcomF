@@ -4,14 +4,14 @@ import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryCo
 export default function ManageCatetoey() {
     return (
         <CategoryContextProvider>
-            <Category />
+            <CategoryDashboard />
         </CategoryContextProvider>
     )
 }
 
 
-function Category() {
-    const { getCategory } = useContext(CategoryContext)
+function CategoryDashboard() {
+    const { category } = useContext(CategoryContext)
     const [showForm, setShowForm] = useState(false)
 
     const toggleAddForm = () => {
@@ -27,12 +27,12 @@ function Category() {
                 </div>
             </div>
             <div>
-                {getCategory?.map((item) => (
+                {category?.map((item) => (
                     <CategoryItem key={item.id} category={item} />
                 ))
                 }
             </div>
-            {showForm && <FormCategory onClose={toggleAddForm} />}
+            {showForm && <FormAddCategory onClose={toggleAddForm} />}
         </div>
     )
 }
@@ -86,7 +86,7 @@ function CategoryItem({ category }) {
     )
 }
 
-function FormCategory({ onClose }) {
+function FormAddCategory({ onClose }) {
 
     const { hdlAddNewCategory } = useContext(CategoryContext)
     const [input, setInput] = useState({
