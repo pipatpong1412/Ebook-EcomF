@@ -45,7 +45,6 @@ function ProductItem({ product }) {
 
     const { deleteProduct } = useContext(ProductContext)
     const [isUpdateProduct, setIsUpdateProduct] = useState(false)
-    const [updateProduct, setUpdateProduct] = useState(product)
 
     const toggleUpdateForm = () => {
         setIsUpdateProduct(!isUpdateProduct);
@@ -56,7 +55,6 @@ function ProductItem({ product }) {
     }
 
     const cancelUpdate = () => {
-        setUpdateProduct(product.name)
         setIsUpdateProduct(false)
     }
 
