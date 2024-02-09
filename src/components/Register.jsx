@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useNavigation } from 'react-router-dom'
 
 export default function Register() {
-
+    const navigate = useNavigate()
     const [input, setInput] = useState({
         name: '',
         email: '',
@@ -23,8 +23,10 @@ export default function Register() {
             const rs = await axios.post('http://localhost:8000/auth/register', input)
             if (rs.status === 200) {
                 alert('Register Successfully')
+                navigate('/login')
             }
-            window.location = '/login'
+            
+
         } catch (error) {
             alert(error)
         }

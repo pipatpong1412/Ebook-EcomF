@@ -43,6 +43,7 @@ function ProductDashboard() {
 
 function ProductItem({ product }) {
 
+    const { deleteProduct } = useContext(ProductContext)
     const [isUpdateProduct, setIsUpdateProduct] = useState(false)
     const [updateProduct, setUpdateProduct] = useState(product)
 
@@ -51,16 +52,16 @@ function ProductItem({ product }) {
     }
 
     const hdlUpdate = () => {
-        hdlUpdateCategory(category.id, updatedCategory)
+        hdlUpdateCategory(product.id, updatedCategory)
         setIsUpdateCategory(false)
     }
 
     const hdlDelete = () => {
-        hdlDeleteCategory(category.id)
+        deleteProduct(product.id)
     }
 
     const cancelUpdate = () => {
-        setUpdatedCategory(category.name)
+        setUpdatedCategory(product.name)
         setIsUpdateCategory(false)
     }
 
@@ -173,6 +174,14 @@ function FormAddProduct({ onClose }) {
                     </div>
                 </form>
             </div>
+        </div>
+    )
+}
+
+function FormEditProduct() {
+    return (
+        <div>
+
         </div>
     )
 }

@@ -26,6 +26,7 @@ export default function Login() {
             })
             setUser(rs1.data)
             if (rs1.status === 200) {
+                alert('Login Succesfully')
                 navigate('/home')
             }
         } catch (error) {

@@ -18,9 +18,9 @@ function CategoryContextProvider(props) {
 
     }
 
-    const hdlDeleteCategory = async (id) => {
+    const hdlDeleteCategory = async (categoryId) => {
         try {
-            await axios.delete(`http://localhost:8000/category/del/${id}`)
+            await axios.delete(`http://localhost:8000/category/del/${categoryId}`)
             .then(res => setTrigger(prv =>!prv))
 
         } catch (error) {
