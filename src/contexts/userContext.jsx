@@ -1,14 +1,34 @@
-import React, { createContext } from 'react'
+import axios from 'axios'
+import React, { createContext, useEffect, useState } from 'react'
 
-const userContext = createContext()
+const UserContext = createContext()
 
-function userContextProvider(props) {
+function UserContextProvider(props) {
+
+    const [user, setUser] = useState(null)
+    // const [trigger, setTrigger] = useState(false)
+
+    useEffect(() => {
+        const getUser = async () => {
+            try {
+                const rs = await axios.get('http://localhost:8000/auth/user/')
+                setUser(rs.data)
+
+            } catch (error) {
+                alert(error.message)
+            }
+        }
+
+        getUser()
+
+    }, [])
+
     return (
-        <userContext.Provider value={{}}>
+        <UserContext.Provider value={{ user }}>
             {props.children}
-        </userContext.Provider>
+        </UserContext.Provider>
     )
 }
 
-export default userContext
-export { userContextProvider }
+export default UserContext
+export { UserContextProvider }
