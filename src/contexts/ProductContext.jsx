@@ -26,7 +26,7 @@ function ProductContextProvider(props) {
     const createProduct = async (newProduct) => {
         try {
             await axios.post('http://localhost:8000/product/newProduct', newProduct)
-            .then(res => setTrigger(prv =>!prv))
+                .then(res => setTrigger(prv => !prv))
             alert('Create Successfully')
 
         } catch (error) {
@@ -37,8 +37,19 @@ function ProductContextProvider(props) {
     const deleteProduct = async (productId) => {
         try {
             await axios.delete(`http://localhost:8000/product/del/${productId}`)
-            .then(res => setTrigger(prv =>!prv))
-            alert('Delete Successfully')
+                .then(res => setTrigger(prv => !prv))
+            alert('Delete Product Successfully')
+
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    const updateProduct = async (productId, product) => {
+        try {
+            await axios.patch(`http://localhost:8000/product/patch/${productId}`, product)
+                .then(res => setTrigger(prv => !prv))
+            alert('Update Product Successfully')
 
         } catch (error) {
             alert(error.message)
@@ -47,7 +58,7 @@ function ProductContextProvider(props) {
 
 
     return (
-        <ProductContext.Provider value={{ product, setProduct, createProduct, deleteProduct}}>
+        <ProductContext.Provider value={{ product, setProduct, createProduct, deleteProduct, updateProduct }}>
             {props.children}
         </ProductContext.Provider>
     );

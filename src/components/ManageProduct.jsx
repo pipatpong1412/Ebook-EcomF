@@ -51,18 +51,13 @@ function ProductItem({ product }) {
         setIsUpdateProduct(!isUpdateProduct);
     }
 
-    const hdlUpdate = () => {
-        hdlUpdateCategory(product.id, updatedCategory)
-        setIsUpdateCategory(false)
-    }
-
     const hdlDelete = () => {
         deleteProduct(product.id)
     }
 
     const cancelUpdate = () => {
-        setUpdatedCategory(product.name)
-        setIsUpdateCategory(false)
+        setUpdateProduct(product.name)
+        setIsUpdateProduct(false)
     }
 
     return (
@@ -83,13 +78,7 @@ function ProductItem({ product }) {
                         </div>
                     </div>
                 ) : (
-                    <div className="relative">
-                        <input value={updatedCategory} onChange={e => setUpdatedCategory(e.target.value)} className="bg-white h-10 px-3 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200" />
-                        <div className="absolute top-2 right-2 flex gap-3 text-lg text-dark-blue">
-                            <span onClick={hdlUpdate} className="cursor-pointer hover:text-blue-300">Save</span>
-                            <span onClick={cancelUpdate} className="cursor-pointer hover:text-red-600">Cancel</span>
-                        </div>
-                    </div>
+                    <FormEditProduct product={product} onClose={cancelUpdate} />
                 )}
             </div>
         </div>
@@ -118,14 +107,13 @@ function FormAddProduct({ onClose }) {
 
     const hdlSubmit = (e) => {
         e.preventDefault()
-        console.log(input)
         createProduct(input)
         onClose()
     }
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white rounded-3xl p-8 shadow-lg border-regal-blue border-2 w-80">
+            <div className="bg-white rounded-3xl p-8 shadow-lg border-regal-blue border-2 w-1/3">
                 <div className="flex justify-center items-center mb-6 relative">
                     <h1 className="text-2xl font-bold text-dark-blue">Add Product</h1>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600 focus:outline-none absolute -top-7 -right-4">
@@ -178,10 +166,96 @@ function FormAddProduct({ onClose }) {
     )
 }
 
-function FormEditProduct() {
-    return (
-        <div>
+function FormEditProduct({ product, onClose }) {
 
+    const { updateProduct } = useContext(ProductContext)
+    const { category } = useContext(CategoryContext)
+    const [input, setInput] = useState({
+        name: product.name,
+        img: product.img,
+        detail: product.detail,
+        price: product.price,
+        author: product.author,
+        publisher: product.publisher,
+        categoryId: product.categoryId
+    })
+
+    const hdlChange = (e) => {
+        setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }))
+    }
+
+    const hdlSubmit = (e) => {
+        e.preventDefault()
+        updateProduct(product.id, input)
+        onClose()
+    }
+
+    const hdlCancel = () => {
+        setInput({
+            name: product.name,
+            img: product.img,
+            detail: product.detail,
+            price: product.price,
+            author: product.author,
+            publisher: product.publisher,
+            categoryId: product.categoryId
+        })
+        onClose()
+    }
+
+
+    return (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-white rounded-3xl p-8 shadow-lg border-regal-blue border-2 w-1/3">
+                <div className="flex justify-center items-center mb-6 relative">
+                    <h1 className="text-2xl font-bold text-dark-blue">Edit Product</h1>
+                    <button onClick={onClose} className="text-gray-400 hover:text-gray-600 focus:outline-none absolute -top-7 -right-4">
+                        <i className="fa-solid fa-x"></i>
+                    </button>
+                </div>
+                <form onSubmit={hdlSubmit}>
+                    <div className="mb-4">
+                        <input name="name" value={input.name} onChange={hdlChange} placeholder="Name" type="text"
+                            className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <input name="img" value={input.img} onChange={hdlChange} placeholder="Cover Image URL" type="text"
+                            className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <textarea className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue" name="detail" value={input.detail} onChange={hdlChange} rows="2" cols="32" placeholder='Detail'></textarea>
+                    </div>
+                    <div className="mb-4">
+                        <input name="price" value={input.price} onChange={hdlChange} placeholder="Price" type="number"
+                            className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <input name="author" value={input.author} onChange={hdlChange} placeholder="Author" type="text"
+                            className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <input name="publisher" value={input.publisher} onChange={hdlChange} placeholder="Publisher" type="text"
+                            className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <select required name="categoryId" value={input.categoryId} onChange={hdlChange} className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue">
+                            <option value="" disabled>Select Category</option>
+                            {category.map(el => (
+                                <option key={el.id} value={el.id}>{el.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="flex justify-center gap-2">
+                        <button type="submit" className="bg-regal-blue text-white rounded-full px-4 py-2 hover:bg-blue-950 hover:text-white">Save</button>
+                        <button onClick={hdlCancel} className="bg-white text-dark-blue rounded-full px-4 py-2 hover:bg-red-500 hover:text-white">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
