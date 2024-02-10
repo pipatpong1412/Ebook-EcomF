@@ -25,7 +25,7 @@ function ProductContextProvider(props) {
 
     const createProduct = async (newProduct) => {
         try {
-            await axios.post('http://localhost:8000/product/newProduct', newProduct)
+            await axios.post('http://localhost:8000/product/create', newProduct)
                 .then(res => setTrigger(prv => !prv))
             alert('Create Successfully')
 

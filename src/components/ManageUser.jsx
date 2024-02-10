@@ -30,14 +30,24 @@ function UserDashboard() {
 
 
 function UserList({ user }) {
+
+    const { deleteUser } = useContext(UserContext)
+
+    const hdlDelete = () => {
+        deleteUser(user.id)
+    }
+
     return (
         <div>
             <div className="bg-white p-4 rounded-lg shadow-md mb-4">
                 <div className='flex items-center justify-between'>
-                    <h2 className="text-lg font-semibold">{user.name}</h2>
+                    <div>
+                        <h2 className="text-lg font-semibold">Name: {user.name}</h2>
+                        <h4>Role: {user.role}</h4>
+                    </div>
                     <div className="flex gap-3 text-lg text-dark-blue">
                         <i className="fa-regular fa-pen-to-square hover:text-blue-300 cursor-pointer"></i>
-                        <i className="fa-solid fa-trash hover:text-red-600 cursor-pointer"></i>
+                        <i onClick={hdlDelete} className="fa-solid fa-trash hover:text-red-600 cursor-pointer"></i>
                     </div>
                 </div>
             </div>

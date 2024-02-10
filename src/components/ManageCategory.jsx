@@ -41,10 +41,16 @@ function CategoryItem({ category }) {
 
     const { hdlUpdateCategory, hdlDeleteCategory } = useContext(CategoryContext)
     const [isUpdateCategory, setIsUpdateCategory] = useState(false)
-    const [updatedCategory, setUpdatedCategory] = useState(category.name)
+    const [updatedCategory, setUpdatedCategory] = useState({
+        name: category.name
+    })
 
     const toggleUpdateForm = () => {
         setIsUpdateCategory(!isUpdateCategory);
+    }
+
+    const hdlChange = (e) => {
+        setUpdatedCategory(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }))
     }
 
     const hdlUpdate = () => {
@@ -74,7 +80,7 @@ function CategoryItem({ category }) {
                     </div>
                 ) : (
                     <div className="relative">
-                        <input value={updatedCategory} onChange={e => setUpdatedCategory(e.target.value)} className="bg-white h-10 px-3 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                        <input name='name' value={updatedCategory.name} onChange={hdlChange} className="bg-white h-10 px-3 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200" />
                         <div className="absolute top-2 right-2 flex gap-3 text-lg text-dark-blue">
                             <span onClick={hdlUpdate} className="cursor-pointer hover:text-blue-300">Save</span>
                             <span onClick={cancelUpdate} className="cursor-pointer hover:text-red-600">Cancel</span>

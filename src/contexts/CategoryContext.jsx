@@ -9,8 +9,9 @@ function CategoryContextProvider(props) {
 
     const hdlAddNewCategory = async (newCategory) => {
         try {
-            await axios.post('http://localhost:8000/category/newCate', newCategory)
-            .then(res => setTrigger(prv =>!prv))
+            await axios.post('http://localhost:8000/category/create', newCategory)
+                .then(res => setTrigger(prv => !prv))
+            alert('Create Category Successfully')
 
         } catch (error) {
             alert(error.message)
@@ -21,7 +22,8 @@ function CategoryContextProvider(props) {
     const hdlDeleteCategory = async (categoryId) => {
         try {
             await axios.delete(`http://localhost:8000/category/del/${categoryId}`)
-            .then(res => setTrigger(prv =>!prv))
+                .then(res => setTrigger(prv => !prv))
+            alert('Delete Category Successfully')
 
         } catch (error) {
             alert(error.message)
@@ -30,9 +32,10 @@ function CategoryContextProvider(props) {
 
     const hdlUpdateCategory = async (id, category) => {
         try {
-            await axios.patch(`http://localhost:8000/category/updateCate/${id}`, {name: category})
-            .then(res => setTrigger(prv =>!prv))
-            
+            await axios.patch(`http://localhost:8000/category/patch/${id}`, category)
+                .then(res => setTrigger(prv => !prv))
+            alert('Update Category Successfully')
+
         } catch (error) {
             alert(error.message)
         }
