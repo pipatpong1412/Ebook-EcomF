@@ -189,15 +189,7 @@ function FormEditProduct({ product, onClose }) {
     }
 
     const hdlCancel = () => {
-        setInput({
-            name: product.name,
-            img: product.img,
-            detail: product.detail,
-            price: product.price,
-            author: product.author,
-            publisher: product.publisher,
-            categoryId: product.categoryId
-        })
+        setInput({...input})
         onClose()
     }
 
