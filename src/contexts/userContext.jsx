@@ -21,7 +21,7 @@ function UserContextProvider(props) {
 
     const updateUser = async (userId, role) => {
         try {
-            await axios.patch(`http://localhost:8000/auth/user/patch/${userId}`, role)
+            await axios.patch(`http://localhost:8000/auth/user/patch/role/${userId}`, role)
                 .then(res => setTrigger(prv => !prv))
             alert('Update Role Successfully')
 

@@ -26,6 +26,16 @@ function AuthContextProvider(props) {
         run()
     }, [])
 
+    const updateProfile = async (userId, data) => {
+        try {
+            await axios.patch(`http://localhost:8000/auth/user/patch/profile/${userId}`, data)
+            alert('Update Profile Successfully')
+            
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     const logout = () => {
         setUser(null)
         localStorage.removeItem('token')
@@ -33,7 +43,7 @@ function AuthContextProvider(props) {
 
 
     return (
-        <AuthContext.Provider value={{ user, setUser, loading, logout }}>
+        <AuthContext.Provider value={{ user, setUser, loading, logout, updateProfile }}>
             {props.children}
         </AuthContext.Provider>
     )

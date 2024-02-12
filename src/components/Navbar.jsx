@@ -16,8 +16,12 @@ export default function Navbar() {
         navigate('/')
     }
 
+    const hdlProfile = () => {
+        navigate('/profile')
+    }
+
     return (
-        <div className="h-16 bg-regal-blue px-4 justify-between flex items-center relative">
+        <div className="h-16 bg-regal-blue px-4 justify-between flex items-center relative w-full">
             <div className='text-white text-4xl'><Link to='/home'>eBooks</Link></div>
             <div className='relative w-1/3'>
                 <input className='bg-white rounded-full h-11 w-full px-3 border-gray-300 pl-10' placeholder='Search...' />
@@ -38,7 +42,7 @@ export default function Navbar() {
                         )}
                         <div className='flex pl-2 items-center hover:bg-gray-100 rounded-t-lg'>
                             <i className="fa-solid fa-gear"></i>
-                            <div className="py-2 px-4 cursor-pointer">Profile</div>
+                            <div onClick={hdlProfile} className="py-2 px-4 cursor-pointer">Profile</div>
                         </div>
                         <div className='flex pl-2 items-center hover:bg-gray-100'>
                             <i className="fa-solid fa-book-open"></i>
