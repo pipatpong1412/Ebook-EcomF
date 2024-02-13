@@ -7,6 +7,7 @@ function ProductContextProvider(props) {
     const [product, setProduct] = useState(null)
     const [trigger, setTrigger] = useState(false)
 
+
     useEffect(() => {
         const getProduct = async () => {
             try {
@@ -55,7 +56,6 @@ function ProductContextProvider(props) {
             alert(error.message)
         }
     }
-
 
     return (
         <ProductContext.Provider value={{ product, setProduct, createProduct, deleteProduct, updateProduct }}>
