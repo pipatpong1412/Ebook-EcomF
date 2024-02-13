@@ -35,8 +35,8 @@ function HomeItem({ product, category }) {
 
     const navigate = useNavigate()
     const toggleLinktoDetail = () => {
-        navigate('/product/' + product.id )
-    }    
+        navigate('/product/' + product.id)
+    }
 
     return (
         <div>
@@ -45,7 +45,7 @@ function HomeItem({ product, category }) {
                 <div className="flex flex-col p-4 relative">
                     <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
                     <p className="text-gray-600 mb-2"><span className="font-semibold">Author: </span>{product.author}</p>
-                    {product.name.length < 25 && category.find(cat => cat.id === product.categoryId) &&
+                    {product.name.trim().length < 20 && category.find(cat => cat.id === product.categoryId) &&
                         <p className="text-gray-600 mb-2"><span className="font-semibold">Category: </span>{category.find(cat => cat.id === product.categoryId).name}</p>
                     }
                     <span className="rounded-lg w-full items-center justify-center flex bg-regal-blue text-white py-2 hover:bg-blue-500">฿{product.price}</span>

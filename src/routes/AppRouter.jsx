@@ -7,6 +7,7 @@ import Home from '../components/Home';
 import Dashboard from '../components/Dashboard';
 import Profile from '../components/Profile';
 import GetProduct from '../components/ProductDetail'
+import Cart from '../components/Cart';
 
 const commonRoutes = [
     { index: true, element: <Login /> },
@@ -15,6 +16,7 @@ const commonRoutes = [
     { path: '/home', element: <Home /> },
     { path: '/profile', element: <Profile /> },
     { path: `/product/*`, element: <GetProduct/> },
+    { path: `/cart/*`, element: <Cart/> },
     { path: '*', element: <h3> PAGE NOT FOUND</h3> }
 ];
 

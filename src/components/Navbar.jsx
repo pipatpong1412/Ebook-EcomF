@@ -16,6 +16,10 @@ export default function Navbar() {
         navigate('/')
     }
 
+    const hdlCart = () => {
+        navigate('/cart')
+    }
+
     const hdlProfile = () => {
         navigate('/profile')
     }
@@ -30,7 +34,7 @@ export default function Navbar() {
                 </div>
             </div>
             <div className='flex gap-5 text-2xl text-white cursor-pointer relative'>
-                <i className="fa-solid fa-cart-shopping  hover:text-gray-500"></i>
+                <i onClick={hdlCart} className="fa-solid fa-cart-shopping  hover:text-gray-500"></i>
                 <i className="fa-solid fa-user hover:text-gray-500" onClick={toggleDropdown}></i>
                 {isDropdownOpen && (
                     <div className="absolute right-0 mt-11 w-40 bg-white rounded-lg shadow-lg text-dark-blue text-xl z-10">
