@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function Login() {
     const navigate = useNavigate()
+    // const messageStatus = 
     const { setUser } = useContext(AuthContext)
     const [input, setInput] = useState({
         email: '',
@@ -30,7 +31,7 @@ export default function Login() {
                 navigate('/home')
             }
         } catch (error) {
-            alert(error.message)
+            alert(error.response.data.message)
         }
 
     }

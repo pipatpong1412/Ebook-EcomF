@@ -37,16 +37,16 @@ function HomeItem({ product, category }) {
         navigate('/product/' + product.id)
     }
 
-    const categoryName = category.find(cat => cat.id === product.categoryId).name
+    const categoryName = category?.find(cat => cat.id === product?.categoryId).name
 
-    const titleLength = 30
-    const productTitle = product.name.length > titleLength ? product.name.substring(0, titleLength) + '...' : product.name
+    const titleLength = 35
+    const productTitle = product?.name.length > titleLength ? product?.name.substring(0, titleLength) + '...' : product?.name
 
     const categoryLength = 12
     const categoryTitle = categoryName.length > categoryLength ? categoryName.substring(0, categoryLength) + '...' : categoryName
 
     const authorLength = 20
-    const authorTitle = product.author.length > authorLength ? product.author.substring(0, authorLength) + '...' : product.author
+    const authorTitle = product?.author.length > authorLength ? product?.author.substring(0, authorLength) + '...' : product?.author
 
     return (
         <div>
@@ -58,7 +58,7 @@ function HomeItem({ product, category }) {
                     ) : (
                         <div>
                             <h2 className="text-lg font-semibold mb-[2px]">{product.name}</h2>
-                            <br />
+                            <h2> </h2>
                         </div>
                     )}
                     <p className="text-gray-600 mb-[2px]"><span className="font-semibold">Author: </span>{authorTitle}</p>

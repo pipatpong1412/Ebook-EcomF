@@ -8,7 +8,7 @@ function AuthContextProvider(props) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const run = async () => {
+        const getMe = async () => {
             try {
                 setLoading(true)
                 let token = localStorage.getItem('token')
@@ -23,7 +23,7 @@ function AuthContextProvider(props) {
                 setLoading(false)
             }
         }
-        run()
+        getMe()
     }, [])
 
     const updateProfile = async (userId, data) => {

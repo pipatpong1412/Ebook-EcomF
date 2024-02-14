@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link, useNavigate, useNavigation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Register() {
     const navigate = useNavigate()
@@ -25,10 +25,9 @@ export default function Register() {
                 alert('Register Successfully')
                 navigate('/login')
             }
-            
 
         } catch (error) {
-            alert(error)
+            alert(error.response.data.message)
         }
     }
     return (
