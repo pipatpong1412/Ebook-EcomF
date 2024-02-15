@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryContext'
+import CartContext, { CartContextProvider } from '../contexts/CartContext'
 
 export default function GetProduct() {
     const location = useLocation()
@@ -39,9 +40,11 @@ export default function GetProduct() {
     return (
         <div>
             <Navbar />
-            <CategoryContextProvider>
-                <ProductDetail product={product} />
-            </CategoryContextProvider>
+            <CartContextProvider>
+                <CategoryContextProvider>
+                    <ProductDetail product={product} />
+                </CategoryContextProvider>
+            </CartContextProvider>
         </div>
     )
 }
@@ -50,8 +53,37 @@ export default function GetProduct() {
 function ProductDetail({ product }) {
 
     const { category } = useContext(CategoryContext)
+    const { addProducttoCart, data } = useContext(CartContext)
+    const [isAddtoCart, setIsAddtoCart] = useState(false)
+    const [ProductInCart, setProductInCart] = useState(null)
+    const [getCartId, setGetCartId] = useState(null)
+
+    useEffect(() => {
+        if (typeof data !== 'string') {
+            const productInCart = data?.find(cat => cat.productId === product.id)
+            const cartId = data?.find(cat => cat.cartId)?.cartId
+            setProductInCart(productInCart)
+            setGetCartId(cartId)
+        }
+    }, [data, product.id]);
+
     const categoryName = category ? category.find(cat => cat.id === product.categoryId)?.name || '' : ''
 
+    const hdlAddtoCart = () => {
+        addProducttoCart(getCartId, product.id)
+    }
+
+    const hdlPurchase = () => {
+        alert('ใจเย็นพ่อหนุ่ม!!')
+    }
+
+    useEffect(() => {
+        if (ProductInCart) {
+            setIsAddtoCart(true)
+        } else {
+            setIsAddtoCart(false)
+        }
+    }, [ProductInCart]);
 
     return (
         <div className='flex justify-center items-center h-screen bg-light-blue'>
@@ -67,12 +99,18 @@ function ProductDetail({ product }) {
                     <p className="text-dark-blue">Detail: {product.detail}</p>
                     <p className="text-dark-blue">Price: <span className='text-green-400 font-bold'>฿{product.price}</span></p>
                     <div className='flex gap-5'>
-                        <button className='shadow-md hover:bg-blue-300 bg-green-300 text-white w-[150px] h-14 rounded-full'>BUY ฿{product.price}</button>
-                        <button className='shadow-md hover:bg-blue-300 bg-regal-blue text-white w-[150px] h-14 rounded-full'>ADD TO CART</button>
+                        <button onClick={hdlPurchase} className='shadow-md hover:bg-blue-300 bg-green-300 text-white w-[150px] h-14 rounded-full'>BUY ฿{product.price}</button>
+                        {isAddtoCart ? <button className='shadow-md  bg-gray-500 text-white w-[150px] h-14 rounded-full'>ADDED IN CART</button>
+                        : <button onClick={hdlAddtoCart} className='shadow-md hover:bg-blue-300 bg-regal-blue text-white w-[150px] h-14 rounded-full'>ADD TO CART</button>}
                     </div>
                 </div>
             </div>
         </div>
-
     )
 }
+
+
+// {typeof data !== 'string' && (
+//     isAddtoCart ? <button className='shadow-md  bg-gray-500 text-white w-[150px] h-14 rounded-full'>ADDED IN CART</button>
+//         : <button onClick={hdlAddtoCart} className='shadow-md hover:bg-blue-300 bg-regal-blue text-white w-[150px] h-14 rounded-full'>ADD TO CART</button>
+// )}

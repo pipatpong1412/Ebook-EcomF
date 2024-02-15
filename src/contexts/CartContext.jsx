@@ -17,6 +17,7 @@ function CartContextProvider(props) {
                 const rs = await axios.get('http://localhost:8000/cart/mycart', {
                     headers: { Authorization: `Bearer ${token}` }
                 })
+                // console.log(rs.data)
                 setData(rs.data)
 
             } catch (error) {
@@ -30,8 +31,23 @@ function CartContextProvider(props) {
 
     }, [])
 
+    const addProducttoCart = async (cartId, productId) => {
+        try {
+            let token = localStorage.getItem('token')
+            if (!token) { return }
+            const rs = await axios.post(`http://localhost:8000/cart/add/${productId}`, cartId, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            if (rs.status === 200) {
+                alert('Add to Cart Successfully')
+            }
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     return (
-        <CartContext.Provider value={{ data, loading }}>
+        <CartContext.Provider value={{ data, loading, addProducttoCart }}>
             {props.children}
         </CartContext.Provider>
     )

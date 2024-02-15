@@ -43,7 +43,7 @@ function HomeItem({ product, category }) {
     const productTitle = product?.name.length > titleLength ? product?.name.substring(0, titleLength) + '...' : product?.name
 
     const categoryLength = 12
-    const categoryTitle = categoryName.length > categoryLength ? categoryName.substring(0, categoryLength) + '...' : categoryName
+    const categoryTitle = categoryName?.length > categoryLength ? categoryName.substring(0, categoryLength) + '...' : categoryName
 
     const authorLength = 20
     const authorTitle = product?.author.length > authorLength ? product?.author.substring(0, authorLength) + '...' : product?.author

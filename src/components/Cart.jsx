@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import { AuthContextProvider } from '../contexts/AuthContext'
 import CartContext, { CartContextProvider } from '../contexts/CartContext'
 import ProductContext, { ProductContextProvider } from '../contexts/ProductContext'
+import { Link } from 'react-router-dom'
 
 export default function Cart() {
     return (
@@ -22,7 +23,9 @@ export default function Cart() {
 function CartDashboard() {
 
     const { data, loading } = useContext(CartContext)
+    // console.log(typeof data);
     const { product } = useContext(ProductContext)
+    // const navigate = useNavigate()
 
     if (loading) {
         return (
@@ -32,37 +35,37 @@ function CartDashboard() {
         )
     }
 
-    if (data.length === 0) {
+    if (typeof data !== 'object') {
         return (
             <div className='h-screen flex item-center justify-center'>
-                <div className="bg-blue-200 h-fit rounded-lg p-6 shadow-md relative w-[50%] items-center justify-center">
-                    <div className="flex justify-center items-center">
+                <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
+                    <div className="flex justify-center items-center flex-col">
                         <h1 className="text-2xl font-bold mb-4">No Product in Cart</h1>
+                        <h3 className='hover:text-white underline'><Link to='/home'>Continue Shopping</Link></h3>
                     </div>
                 </div>
             </div>
         )
-    }
-
-    return (
-        <div className='h-screen flex items-center justify-center'>
-            <div className="bg-blue-200 h-fit rounded-lg p-6 shadow-md relative w-[50%] items-center justify-center -mt-[15%]">
-                <div className="flex justify-center items-center">
-                    <h1 className="text-2xl font-bold mb-4">CART</h1>
+    } else {
+        return (
+            <div className='h-screen flex items-center justify-center'>
+                <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
+                    <div className="flex justify-center items-center">
+                        <h1 className="text-2xl font-bold mb-4">CART</h1>
+                    </div>
+                    <div>
+                        {data?.map(el => (
+                            <CartItem key={el.id} productInCart={el} product={product} />
+                        ))}
+                    </div>
+                    <SummaryCartProduct data={data} product={product} />
                 </div>
-                <div>
-                    {data?.map(el => (
-                        <CartItem key={el.id} productInCart={el} product={product} />
-                    ))}
-                </div>
-                <SummaryCartProduct data={data} product={product} />
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 function CartItem({ productInCart, product }) {
-
     const cartProduct = product?.find(item => item.id === productInCart.productId)
     const { name, price, img } = cartProduct
 
@@ -89,14 +92,23 @@ function CartItem({ productInCart, product }) {
 }
 
 function SummaryCartProduct({ data, product }) {
-    const totalPrice = data.reduce((acc, cartItem) => {
-        const productInCart = product.find(item => item.id === cartItem.productId)
-        return acc + productInCart.price
-    }, 0)
 
-    return (
-        <div>
-            Total Price: ${totalPrice}
-        </div>
-    );
+    if (data && product) {
+        const totalPrice = data?.reduce((acc, cartItem) => {
+            const productInCart = product.find(item => item.id === cartItem.productId)
+            return acc + productInCart.price
+        }, 0)
+
+        const totalQty = data?.reduce((acc, cartItem) => {
+            return acc + cartItem.quantity
+        }, 0)
+
+        return (
+            <div className='flex flex-col items-center justify-center'>
+                <p className='hover:text-white underline'><Link to='/home'>Continue Shopping</Link></p>
+                <p>Total Price: ${totalPrice}</p>
+                <p>Total: {totalQty} Items</p>
+            </div>
+        )
+    }
 }
