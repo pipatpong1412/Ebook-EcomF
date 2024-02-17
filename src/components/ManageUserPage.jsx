@@ -1,17 +1,7 @@
 import React, { useContext, useState } from 'react'
 import UserContext, { UserContextProvider } from '../contexts/userContext'
 
-export default function ManageUser() {
-
-    return (
-        <UserContextProvider>
-            <UserDashboard />
-        </UserContextProvider>
-    )
-}
-
-function UserDashboard() {
-
+export default function ManageUserPage() {
     const { user } = useContext(UserContext)
 
     return (
@@ -115,7 +105,6 @@ function FormEditRole({ user, onClose }) {
                             <option value="ADMIN">ADMIN</option>
                             <option value="USER">USER</option>
                         </select>
-
                     </div>
                     <div className="flex justify-center gap-2">
                         <button type="submit" className="bg-regal-blue text-white rounded-full px-4 py-2 hover:bg-blue-950 hover:text-white">Save</button>

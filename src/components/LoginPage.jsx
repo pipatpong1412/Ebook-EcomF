@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import axios from "axios";
 
-export default function Login() {
+export default function LoginPage() {
     const navigate = useNavigate()
-    // const messageStatus = 
     const { setUser } = useContext(AuthContext)
     const [input, setInput] = useState({
         email: '',

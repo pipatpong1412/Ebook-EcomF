@@ -1,32 +1,23 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Navbar from './Navbar'
-import ProductContext, { ProductContextProvider } from "../contexts/ProductContext"
-import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryContext'
+import ProductContext from "../contexts/ProductContext"
+import CategoryContext from '../contexts/CategoryContext'
 import { useNavigate } from 'react-router-dom'
 
-export default function Home() {
-    return (
-        <>
-            <Navbar />
-            <CategoryContextProvider>
-                <ProductContextProvider>
-                    <HomeProduct />
-                </ProductContextProvider>
-            </CategoryContextProvider>
-        </>
-    )
-}
-
-function HomeProduct() {
+export default function HomePage() {
     const { product } = useContext(ProductContext)
     const { category } = useContext(CategoryContext)
 
     return (
-        <div className="grid grid-cols-4 gap-6 mt-5 w-[950px] mx-auto relative pb-5">
-            {product?.map(item => (
-                <HomeItem key={item.id} product={item} category={category} />
-            ))}
-        </div>
+        <>
+            <Navbar />
+            <div className="grid grid-cols-4 gap-6 mt-5 w-[950px] mx-auto relative pb-5">
+                {product?.map(item => (
+                    <HomeItem key={item.id} product={item} category={category} />
+                ))}
+            </div>
+        </>
+
     )
 }
 

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function Register() {
+export default function RegisterPage() {
     const navigate = useNavigate()
     const [input, setInput] = useState({
         name: '',

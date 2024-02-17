@@ -19,7 +19,7 @@ function CartContextProvider(props) {
                     headers: { Authorization: `Bearer ${token}` }
                 })
                 // console.log(rs.data[0].cartId)
-                setData(rs.data);
+                setData(rs.data)
                 setCartId(rs.data.length === 0 ? null : rs.data[0].cartId)
 
             } catch (error) {

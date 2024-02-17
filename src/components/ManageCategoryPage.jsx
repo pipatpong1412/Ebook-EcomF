@@ -1,16 +1,7 @@
 import React, { useContext, useState } from 'react'
-import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryContext'
+import CategoryContext from '../contexts/CategoryContext'
 
-export default function ManageCatetoey() {
-    return (
-        <CategoryContextProvider>
-            <CategoryDashboard />
-        </CategoryContextProvider>
-    )
-}
-
-
-function CategoryDashboard() {
+export default function ManageCategoryPage() {
     const { category } = useContext(CategoryContext)
     const [showForm, setShowForm] = useState(false)
 
@@ -36,6 +27,7 @@ function CategoryDashboard() {
         </div>
     )
 }
+
 
 function CategoryItem({ category }) {
 

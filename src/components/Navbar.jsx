@@ -1,28 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
-import CartContext, { CartContextProvider } from '../contexts/CartContext'
+import CartContext from '../contexts/CartContext'
 
 export default function Navbar() {
+
     const { user, logout } = useContext(AuthContext)
+    const { data } = useContext(CartContext)
 
     return (
         <div>
-            <CartContextProvider>
-                <NavContent user={user} logout={logout} />
-            </CartContextProvider>
+            {user && data && <NavContent user={user} logout={logout} data={data}/>}
         </div>
     )
 
 }
 
-function NavContent({ user, logout }) {
+function NavContent({ user, logout, data }) {
 
-    const { data } = useContext(CartContext)
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-    const [hasProduct, setHasProduct] = useState(false)
 
+    const countData = data.length.toString()
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen)
@@ -50,34 +49,39 @@ function NavContent({ user, logout }) {
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
-            <div className='flex gap-5 text-2xl text-white cursor-pointer relative'>
-                {hasProduct ? <i onClick={hdlCart} className="fa-solid fa-cart-shopping  hover:text-gray-500 text-red-500"></i>
-                    : <i onClick={hdlCart} className="fa-solid fa-cart-shopping  hover:text-gray-500"></i>}
-                <i className="fa-solid fa-user hover:text-gray-500" onClick={toggleDropdown}></i>
-                {isDropdownOpen && (
-                    <div className="absolute right-0 mt-11 w-40 bg-white rounded-lg shadow-lg text-dark-blue text-xl z-10">
-                        {user?.role === 'ADMIN' && (
+            <div className='flex gap-5 text-2xl text-white cursor-pointer relative items-center justify-center'>
+                <div className='flex gap-5 items-center justify-center'>
+                    {data && data.length > 0 ?
+                        <div className="relative">
+                            <i onClick={hdlCart} className="fa-solid fa-cart-shopping hover:text-dark-blue"></i>
+                            <div className={`absolute -top-1 -right-1 bg-red-500 text-xs text-white rounded-full w-5 h-5 flex items-center justify-center`}>{countData}</div>
+                        </div>
+                        : <i onClick={hdlCart} className="fa-solid fa-cart-shopping hover:text-gray-500"></i>}
+                </div>
+                <div className='border p-2 rounded-xl hover:bg-white hover:text-dark-blue'>
+                    <i className="fa-solid fa-user" onClick={toggleDropdown}><span className='text-sm pl-3'>{user.name}</span></i>
+                    {isDropdownOpen && (
+                        <div className="absolute right-0 mt-[15px] w-40 bg-white rounded-lg shadow-lg text-dark-blue text-xl z-10">
+                            {user?.role === 'ADMIN' && (
+                                <div className='flex pl-2 items-center hover:bg-gray-100 rounded-t-lg'>
+                                    <i className="fa-solid fa-crown"></i>
+                                    <div className="py-2 px-4 cursor-pointer"><Link to='/dashboard'>Dashboard</Link></div>
+                                </div>
+                            )}
                             <div className='flex pl-2 items-center hover:bg-gray-100 rounded-t-lg'>
-                                <i className="fa-solid fa-crown"></i>
-                                <div className="py-2 px-4 cursor-pointer"><Link to='/dashboard'>Dashboard</Link></div>
+                                <i className="fa-solid fa-gear"></i>
+                                <div onClick={hdlProfile} className="py-2 px-4 cursor-pointer">Profile</div>
                             </div>
-                        )}
-                        <div className='flex pl-2 items-center hover:bg-gray-100 rounded-t-lg'>
-                            <i className="fa-solid fa-gear"></i>
-                            <div onClick={hdlProfile} className="py-2 px-4 cursor-pointer">Profile</div>
+                            <div className='flex pl-2 items-center hover:bg-gray-100'>
+                                <i className="fa-solid fa-book-open"></i>
+                                <div className="py-2 px-4 cursor-pointer">My Shelf</div>
+                            </div>
+                            <div className='flex pl-2 items-center hover:bg-red-500 rounded-b-lg'>
+                                <i className="fa-solid fa-right-from-bracket"></i>
+                                <div onClick={hdlLogout} className="py-2 px-4 hover:text-white cursor-pointer">Logout</div>
+                            </div>
                         </div>
-                        <div className='flex pl-2 items-center hover:bg-gray-100'>
-                            <i className="fa-solid fa-book-open"></i>
-                            <div className="py-2 px-4 cursor-pointer">My Shelf</div>
-                        </div>
-                        <div className='flex pl-2 items-center hover:bg-red-500 rounded-b-lg'>
-                            <i className="fa-solid fa-right-from-bracket"></i>
-                            <div onClick={hdlLogout} className="py-2 px-4 hover:text-white cursor-pointer">Logout</div>
-                        </div>
-                    </div>
-                )}
-                <div className='cursor-default'>
-                    <span>{user?.id ? user.name : 'Guest'}</span>
+                    )}
                 </div>
             </div>
         </div>

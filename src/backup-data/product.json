@@ -1,0 +1,132 @@
+[
+    {
+        "id": "65cb2ca6552efee2f666c74d",
+        "name": "จิตวิทยาสายดาร์ก",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202304/577274/1000260516_front_XXL.jpg?imgname=%E0%B8%88%E0%B8%B4%E0%B8%95%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%94%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%81",
+        "detail": "เมื่อคำพูดของคุณสามารถควบคุมจิตใจคนได้",
+        "price": 225,
+        "author": "Dr.Hiro",
+        "publisher": "วีเลิร์น (WeLearn)",
+        "categoryId": "65c0688b3dd203b5ead3e2a5"
+    },
+    {
+        "id": "65cb2ce1552efee2f666c74e",
+        "name": "ATOMIC HABITS เพราะชีวิตดีได้กว่าที่เป็น",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202007/508699/1000233967_front_XXL.jpg?imgname=ATOMIC-HABITS-%E0%B9%80%E0%B8%9E%E0%B8%A3%E0%B8%B2%E0%B8%B0%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95%E0%B8%94%E0%B8%B5%E0%B9%84%E0%B8%94%E0%B9%89%E0%B8%81%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%80%E0%B8%9B%E0%B9%87%E0%B8%99",
+        "detail": "บทพิสูจน์ที่เปลี่ยนชีวิตคุณให้ดีขึ้นได้อย่างถาวร โดยJAMES CLEAR นักเขียนหนังสือขายดีของ New York Times ผู้เชี่ยวชาญระดับโลกด้านการสร้างนิสัย",
+        "price": 256,
+        "author": "James Clear",
+        "publisher": "เชนจ์พลัส/Change+",
+        "categoryId": "65c0688b3dd203b5ead3e2a5"
+    },
+    {
+        "id": "65cb2d35552efee2f666c74f",
+        "name": "คู่มือ Coding ภาษา Python ฉบับสมบูรณ์",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202107/530299/6000050078_front_XXL.jpg?imgname=%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD-Coding-%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2-Python-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B8%AA%E0%B8%A1%E0%B8%9A%E0%B8%B9%E0%B8%A3%E0%B8%93%E0%B9%8C",
+        "detail": "Python เป็นภาษาเขียนโปรแกรมที่ทุกคนต้องเรียนรู้ เพราะมันคือส่วนหนึ่งของทักษะการ Coding ซึ่งเป็นทักษะแห่งอนาคต สามารถนำไปใช้งานในชีวิตจริง ได้ทั้งทางตรงในสายอาชีพด้าน Developer และสายงานที่เกี่ยวข้องอื่นๆ อาทิ Data Science, Business Analytic รวมถึง AI ดังนั้นเนื้อหาในหนังสือเล่มนี้ จึงออกแบบให้เน้นปูพื้นฐานการ Coding ที่ดีให้กับผู้สนใจ ไม่ว่าจะมีพื้นฐานการเขียนโปรแกรมมาก่อนหรือไม่ก็ตามช่วยให้เข้าใจหลักการ Coding ภาษา Python ตั้งแต่พื้นฐานไล่ขึ้นไปจนถึงการประยุกต์ใช้ระดับสูงในงานด้านต่างๆ ด้วยการฝึกทำจริงกับโมดูลและเครื่องมือหลากชนิดที่นักพัฒนาซอฟแวร์ทั่วโลกนิยมใช้กัน",
+        "price": 297,
+        "author": "สุดา เธียรมนตรี",
+        "publisher": "Infopress",
+        "categoryId": "65c0688b3dd203b5ead3e2a3"
+    },
+    {
+        "id": "65cb2d7a552efee2f666c750",
+        "name": "คู่มือ coding ด้วย Visual Visual C# 2019 ฉบับผู้เริ่มต้น",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202102/521997/6000045517_front_XXL.jpg?imgname=%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD-coding--%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-Visual-Visual-C--2019-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B9%80%E0%B8%A3%E0%B8%B4%E0%B9%88%E0%B8%A1%E0%B8%95%E0%B9%89%E0%B8%99",
+        "detail": "คู่มือ coding ด้วย Visual Visual C# 2019 ฉบับผู้เริ่มต้น",
+        "price": 310,
+        "author": "ศุภชัย สมพานิช",
+        "publisher": "Infopress",
+        "categoryId": "65c0688b3dd203b5ead3e2a3"
+    },
+    {
+        "id": "65cb2dea552efee2f666c751",
+        "name": "นิยายเรื่องหนึ่งซึ่งยังไม่ถึงตอนจบ",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202205/548805/1000248965_front_XXL.jpg?imgname=%E0%B8%99%E0%B8%B4%E0%B8%A2%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87%E0%B8%8B%E0%B8%B6%E0%B9%88%E0%B8%87%E0%B8%A2%E0%B8%B1%E0%B8%87%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%96%E0%B8%B6%E0%B8%87%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%88%E0%B8%9A",
+        "detail": "การพบกันของพ่อกับลูกชายซึ่งไม่เคยพบหน้าก่อร่างเรื่องราวและความทรงจำให้เล่าขานอย่างไม่มีวันจบ",
+        "price": 207,
+        "author": "เซโอะ ไมโกะ",
+        "publisher": "Bibli (บิบลิ)",
+        "categoryId": "65c0688b3dd203b5ead3e2a4"
+    },
+    {
+        "id": "65cb2e0d552efee2f666c752",
+        "name": "นิยายเรื่องนี้ฉันขอไม่เล่น",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202309/589606/1000264653_front_XXL.jpg?imgname=%E0%B8%99%E0%B8%B4%E0%B8%A2%E0%B8%B2%E0%B8%A2%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%99%E0%B8%B5%E0%B9%89%E0%B8%89%E0%B8%B1%E0%B8%99%E0%B8%82%E0%B8%AD%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%99",
+        "detail": "ไม่เคยคิดว่าตัวเองจะโดนนิยายตกใส่หัวแล้วตาย แถมได้ไปเกิดใหม่ในร่างของละรี นางร้ายที่มีจุดจบน่าอนาจจากฝีมือของพระรองที่หล่อลากจนอยากจะลากขึ้นเตียงอย่างจิรกาล เธอจึงพยายามไม่เข้าใกล้คนพวกนี้ แต่เหมือนยิ่งหนีเขาก็ยิ่งเข้าหา และบอกว่ามาลองคบกันไหม มันไม่เหมือนที่อ่านมานี่หว่า แล้วสุดท้ายละรีจะยอมนอกบทคบกับพระรองสุดหล่อหรือไม่ ติดตามได้ใน นิยายเรื่องนี้ ฉันขอไม่เล่น ค่ะ",
+        "price": 366,
+        "author": "วาระวารี",
+        "publisher": "เขียนฝัน",
+        "categoryId": "65c0688b3dd203b5ead3e2a4"
+    },
+    {
+        "id": "65cb2e31552efee2f666c753",
+        "name": "มันผิดรึไงถ้าใจอยากจะพบรักในดันเจี้ยน ภาคพิเศษ ซอร์ด โอราโทเรีย เล่ม 12 (นิยาย)",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202310/593672/1000266143_front_XXL.jpg?imgname=%E0%B8%A1%E0%B8%B1%E0%B8%99%E0%B8%9C%E0%B8%B4%E0%B8%94%E0%B8%A3%E0%B8%B6%E0%B9%84%E0%B8%87%E0%B8%96%E0%B9%89%E0%B8%B2%E0%B9%83%E0%B8%88%E0%B8%AD%E0%B8%A2%E0%B8%B2%E0%B8%81%E0%B8%88%E0%B8%B0%E0%B8%9E%E0%B8%9A%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B9%83%E0%B8%99%E0%B8%94%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%99-%E0%B8%A0%E0%B8%B2%E0%B8%84%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9-%E0%B8%8B%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%94-%E0%B9%82%E0%B8%AD%E0%B8%A3%E0%B8%B2%E0%B9%82%E0%B8%97%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2-%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%A1-12-(%E0%B8%99%E0%B8%B4%E0%B8%A2%E0%B8%B2%E0%B8%A2)",
+        "detail": " 'ถ้าพูดถึงบทสรุปแล้ว นี่คือเรื่องราวที่ไม่เคยเกิดขึ้นมาก่อน ใครจะชนะ ใครจะแพ้ ใครจะอยู่ ใครจะตาย ใครจะคำราม ใครจะร่ำไห้ ใครจะสูญเสีย ทุกคนที่เข้าร่วมสงครามในครั้งนี้จะไม่ได้รับทั้งชื่อเสียงและเงินทอง ต้องพลีชีพทั้งที่ไม่มีการจารึกลงในประวัติศาสตร์ ต้องตายจากไปโดยไม่มีใครรับรู้ แต่ถึงอย่างนั้น \"พวกเธอ\" ก็ยังก้าวเดินเพื่อเผชิญหน้ากับความเลวร้ายที่ยิ่งใหญ่และความดำมืดถึงขีดสุด เพื่อความสงบสุขของบ้านเมือง เพื่อศักดิ์ศรี เพื่อสายสัมพันธ์......",
+        "price": 306,
+        "author": "ฟูจิโนะ โอโมริ",
+        "publisher": "เซนชู/ZENSHU",
+        "categoryId": "65c0688b3dd203b5ead3e2a4"
+    },
+    {
+        "id": "65cb2f50552efee2f666c754",
+        "name": "สุดยอดคัมภีร์การเงินจากฮาร์วาร์ด ฉบับปรับปรุง",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202309/591305/1000265193_front_XXL.jpg?imgname=%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B8%A2%E0%B8%AD%E0%B8%94%E0%B8%84%E0%B8%B1%E0%B8%A1%E0%B8%A0%E0%B8%B5%E0%B8%A3%E0%B9%8C%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99%E0%B8%88%E0%B8%B2%E0%B8%81%E0%B8%AE%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%A7%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B8%94-%E0%B8%89%E0%B8%9A%E0%B8%B1%E0%B8%9A%E0%B8%9B%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%9B%E0%B8%A3%E0%B8%B8%E0%B8%87",
+        "detail": "ความเข้าใจในเรื่องตัวเลขทางการเงิน ความสำคัญและความหมายที่ซ่อนอยู่เบื้องหลังตัวเลขต่างๆที่ผู้จัดการและนักลงทุนทุกคนจำเป็นต้องรู้",
+        "price": 355,
+        "author": "Karen Berman",
+        "publisher": "เอ็กซเปอร์เน็ท/expernetbooks",
+        "categoryId": "65ca1f3fa2a605531fb34b54"
+    },
+    {
+        "id": "65cb2f81552efee2f666c755",
+        "name": "FAKE : การเงินลวงโลก",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202103/522982/1000239882_front_XXL.jpg?imgname=FAKE-:-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99%E0%B8%A5%E0%B8%A7%E0%B8%87%E0%B9%82%E0%B8%A5%E0%B8%81",
+        "detail": "โลกการเงินซับซ้อนและผันผวนมากขึ้นทุกวัน แถมยังถาโถมด้วยข้อมูลจากทุกทิศทาง จริงบ้าง เท็จบ้าง ทั้งถูกและผิด ปะปนจนไม่รู้อะไรเป็นอะไรทำให้ความสามารถในการแยกแยะว่า อะไร \"จริง\" อะไร \"ลวง\" มีผลต่อความสำเร็จทางการเงิน และความมั่งคั่งอย่างมาก",
+        "price": 355,
+        "author": "Robert T. Kiyosaki",
+        "publisher": "ซีเอ็ดยูเคชั่น/se-ed",
+        "categoryId": "65ca1f3fa2a605531fb34b54"
+    },
+    {
+        "id": "65cb2fac552efee2f666c756",
+        "name": "วารสารคลินิก ฉ.383 พ.ย.59",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/201605/193321/6000021053_front_XXL.jpg?imgname=%E0%B8%A7%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%84%E0%B8%A5%E0%B8%B4%E0%B8%99%E0%B8%B4%E0%B8%81-%E0%B8%89.383-%E0%B8%9E.%E0%B8%A2.59",
+        "detail": "วารสารคลินิก ฉ.383 พ.ย.59",
+        "price": 80,
+        "author": "ไม่ทราบ",
+        "publisher": "หมอชาวบ้าน",
+        "categoryId": "65ca1f68a2a605531fb34b55"
+    },
+    {
+        "id": "65cb932406a05e961066d71d",
+        "name": "SLAVE ทาสสุดแกร่งแห่งหน่วยป้องกันอสูร เล่ม 3",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202104/525463/1000240771_front_XXL.jpg?imgname=SLAVE-%E0%B8%97%E0%B8%B2%E0%B8%AA%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%81%E0%B8%81%E0%B8%A3%E0%B9%88%E0%B8%87%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%A7%E0%B8%A2%E0%B8%9B%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%AD%E0%B8%AA%E0%B8%B9%E0%B8%A3-%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%A1-3",
+        "detail": "SLAVE ทาสสุดแกร่งแห่งหน่วยป้องกันอสูร เล่ม 3\n\nการต่อสู้แลกเปลี่ยนประสบการณ์ในเมืองอสูร ระหว่างกลุ่ม 6 และกลุ่ม 7 ฮิมาริโดนท่าไม้ตายของยาจิโฮะที่เป็นพี่สาวไล่ต้อนจนจนมุม พวกเขาจะโชว์ผลลัพธ์จากการฝึกพิเศษให้ประจักษ์ได้หรือไม่!? และแล้ว ก็เข้าสู่การต่อสู้แลกเปลี่ยนรอบ 2 ระหว่างซุซุ vs ซาฮาระ ที่ประชันกันด้วยพละกำลังในระหว่างการแข่งขันที่ร้อนแรง จู่ๆ ก็มีศัตรูที่ไม่รู้ที่มาที่ไปบุกโจมตี!?",
+        "price": 130,
+        "author": "Yokei Takemura",
+        "publisher": " สยามอินเตอร์คอมิกส์/Siam Inter Comics",
+        "categoryId": "65ca1ee0a2a605531fb34b53"
+    },
+    {
+        "id": "65cb93dc06a05e961066d71e",
+        "name": "ใช้คลื่นพลังบวกดึงดูดพลังสุข",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202109/533485/6000052081_front_XXL.jpg?imgname=%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%84%E0%B8%A5%E0%B8%B7%E0%B9%88%E0%B8%99%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%9A%E0%B8%A7%E0%B8%81%E0%B8%94%E0%B8%B6%E0%B8%87%E0%B8%94%E0%B8%B9%E0%B8%94%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B8%E0%B8%82",
+        "detail": "ใช้คลื่นพลังบวกดึงดูดพลังสุข\nผลงานเล่มเยี่ยมที่สร้างแรงบันดาลใจให้ผู้คนทั่วโลก\nด้วยยอดขายกว่า 6 แสนเล่ม N0.1 SUNDAY TIMES BESTSELLER และแปลไปแล้ว 30 ภาษา",
+        "price": 225,
+        "author": "เว็กซ์ คิงส์",
+        "publisher": "อมรินทร์ How to",
+        "categoryId": "65c0688b3dd203b5ead3e2a5"
+    },
+    {
+        "id": "65ceebf98ac494c400116816",
+        "name": "Manifest: 7 ขั้นตอนสู่ทุกสิ่งที่ปรารถนา",
+        "img": "https://storage.naiin.com/system/application/bookstore/resource/product/202308/588321/6000079101_front_XXL.jpg?imgname=Manifest:-7-%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%AA%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B8%E0%B8%81%E0%B8%AA%E0%B8%B4%E0%B9%88%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%A3%E0%B8%96%E0%B8%99%E0%B8%B2",
+        "detail": "Manifest : 7 ขั้นตอนสู่ทุกสิ่งที่ปรารถนา\n\n.\n\nพร้อมหรือยังที่จะปลดล็อกเวทมนตร์แห่งการใช้จิตดลบันดาล\n\nและปลดปล่อยศักยภาพอันไร้ขีดจำกัดของคุณออกมา\n\n.\n\nหนังสือเล่มนี้คือคู่มือสำคัญสำหรับทุกคนที่ปรารถนาจะรู้สึกถึงพลังภายในตัวเองมากขึ้นในชีวิต\n\nด้วยการปฏิบัติตาม 7 ขั้นตอนง่าย ๆ\n\nเราจะเข้าใจศิลปะที่แท้จริงของการใช้จิตดลบันดาลและสร้างชีวิตที่เราเฝ้าฝันถึงมาตลอดได้\n\n.\n\nการใช้จิตดลบันดาล\n\nคือการพบกันของวิทยาศาสตร์และภูมิปัญญา\n\nคือวิธีปฏิบัติในการพัฒนาตนเองที่เอื้อให้เราเอื้อมคว้าเป้าหมายที่ต้องการ\n\nบ่มเพาะการรักตัวเอง และใช้ชีวิตอย่างดีที่สุด",
+        "price": 176,
+        "author": "Roxie Nafousi",
+        "publisher": "อมรินทร์ How to",
+        "categoryId": "65c0688b3dd203b5ead3e2a5"
+    }
+]

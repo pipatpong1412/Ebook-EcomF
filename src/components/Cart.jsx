@@ -1,69 +1,58 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Navbar from './Navbar'
-import { AuthContextProvider } from '../contexts/AuthContext'
-import CartContext, { CartContextProvider } from '../contexts/CartContext'
-import ProductContext, { ProductContextProvider } from '../contexts/ProductContext'
+import CartContext from '../contexts/CartContext'
+import ProductContext from '../contexts/ProductContext'
 import { Link } from 'react-router-dom'
 
-export default function Cart() {
-    return (
-        <div>
-            <Navbar />
-            <AuthContextProvider>
-                <ProductContextProvider>
-                    <CartContextProvider>
-                        <CartDashboard />
-                    </CartContextProvider>
-                </ProductContextProvider>
-            </AuthContextProvider>
-        </div>
-    )
-}
-
-function CartDashboard() {
-
+export default function CartPage() {
     const { data, loading } = useContext(CartContext)
-    // console.log(typeof data);
     const { product } = useContext(ProductContext)
-    // const navigate = useNavigate()
 
     if (loading) {
         return (
             <div>
+                <Navbar />
                 <p>loading...</p>
             </div>
         )
     }
 
-    if (typeof data !== 'object') {
+    if (typeof data !== 'object' || data.length === 0) {
         return (
-            <div className='h-screen flex item-center justify-center'>
-                <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
-                    <div className="flex justify-center items-center flex-col">
-                        <h1 className="text-2xl font-bold mb-4">No Product in Cart</h1>
-                        <h3 className='hover:text-white underline'><Link to='/home'>Continue Shopping</Link></h3>
+            <>
+                <Navbar />
+                <div className='h-screen flex item-center justify-center'>
+                    <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
+                        <div className="flex justify-center items-center flex-col">
+                            <h1 className="text-2xl font-bold mb-4">No Product in Cart</h1>
+                            <h3 className='hover:text-white underline'><Link to='/home'>Continue Shopping</Link></h3>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </>
         )
     } else {
         return (
-            <div className='h-screen flex items-center justify-center'>
-                <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
-                    <div className="flex justify-center items-center">
-                        <h1 className="text-2xl font-bold mb-4">CART</h1>
+            <>
+                <Navbar />
+                <div className='h-screen flex items-center justify-center'>
+                    <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
+                        <div className="flex justify-center items-center">
+                            <h1 className="text-2xl font-bold mb-4">CART</h1>
+                        </div>
+                        <div>
+                            {product && data?.map(el => (
+                                <CartItem key={el.id} productInCart={el} product={product} />
+                            ))}
+                        </div>
+                        <SummaryCartProduct data={data} product={product} />
                     </div>
-                    <div>
-                        {product && data?.map(el => (
-                            <CartItem key={el.id} productInCart={el} product={product} />
-                        ))}
-                    </div>
-                    <SummaryCartProduct data={data} product={product} />
                 </div>
-            </div>
+            </>
         )
     }
 }
+
 
 function CartItem({ productInCart, product }) {
     const cartProduct = product?.find(item => item.id === productInCart.productId)

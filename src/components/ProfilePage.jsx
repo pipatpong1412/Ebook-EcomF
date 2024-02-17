@@ -1,39 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
-import AuthContext, { AuthContextProvider } from '../contexts/AuthContext'
+import AuthContext from '../contexts/AuthContext'
 
-export default function Profile() {
+export default function ProfilePage() {
+    const { user, updateProfile } = useContext(AuthContext)
 
     return (
         <div>
             <Navbar />
-            <AuthContextProvider>
-                <FormProfile />
-            </AuthContextProvider>
+            {user && <FormProfile user={user} updateProfile={updateProfile} />}
         </div>
     )
 }
 
 
-function FormProfile() {
+function FormProfile({ user, updateProfile }) {
 
-    const { user, updateProfile } = useContext(AuthContext)
     const [isEditProfile, setIsEditProfile] = useState(false)
     const [input, setInput] = useState({
-        name: '',
-        email: '',
-        phone: ''
+        name: user.name,
+        email: user.email,
+        phone: user.phone
     })
-
-    useEffect(() => {
-        if (user) {
-            setInput({
-                name: user.name,
-                email: user.email,
-                phone: user.phone
-            })
-        }
-    }, [user])
 
     const hdlCancel = () => {
         setInput({ ...input })

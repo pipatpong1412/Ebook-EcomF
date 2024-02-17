@@ -1,19 +1,8 @@
 import React, { useContext, useState } from 'react'
-import ProductContext, { ProductContextProvider } from '../contexts/ProductContext'
-import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryContext'
+import ProductContext from '../contexts/ProductContext'
+import CategoryContext from '../contexts/CategoryContext'
 
-export default function ManageProduct() {
-    return (
-        <CategoryContextProvider>
-            <ProductContextProvider>
-                <ProductDashboard />
-            </ProductContextProvider>
-        </CategoryContextProvider>
-    )
-}
-
-function ProductDashboard() {
-
+export default function ManageProductPage() {
     const { product } = useContext(ProductContext)
     const [showForm, setShowForm] = useState(false)
 
@@ -30,10 +19,9 @@ function ProductDashboard() {
                 </div>
             </div>
             <div>
-                {product?.map((item) => (
+                {product && product.map((item) => (
                     <ProductItem key={item.id} product={item} />
-                ))
-                }
+                ))}
             </div>
             {showForm && <FormAddProduct onClose={toggleAddForm} />}
         </div>
@@ -189,7 +177,7 @@ function FormEditProduct({ product, onClose }) {
     }
 
     const hdlCancel = () => {
-        setInput({...input})
+        setInput({ ...input })
         onClose()
     }
 

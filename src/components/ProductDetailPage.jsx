@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
-import CategoryContext, { CategoryContextProvider } from '../contexts/CategoryContext'
-import CartContext, { CartContextProvider } from '../contexts/CartContext'
+import CategoryContext from '../contexts/CategoryContext'
+import CartContext from '../contexts/CartContext'
 
-export default function GetProduct() {
+export default function ProductDetailPage() {
     const location = useLocation()
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -38,14 +38,10 @@ export default function GetProduct() {
     }
 
     return (
-        <div>
+        <>
             <Navbar />
-            <CartContextProvider>
-                <CategoryContextProvider>
-                    <ProductDetail product={product} />
-                </CategoryContextProvider>
-            </CartContextProvider>
-        </div>
+            <ProductDetail product={product} />
+        </>
     )
 }
 
@@ -99,7 +95,7 @@ function ProductDetail({ product }) {
                     <div className='flex gap-5'>
                         <button onClick={hdlPurchase} className='shadow-md hover:bg-blue-300 bg-green-300 text-white w-[150px] h-14 rounded-full'>BUY ฿{product.price}</button>
                         {isAddtoCart ? <button className='shadow-md  bg-gray-500 text-white w-[150px] h-14 rounded-full'>ADDED IN CART</button>
-                        : <button onClick={hdlAddtoCart} className='shadow-md hover:bg-blue-300 bg-regal-blue text-white w-[150px] h-14 rounded-full'>ADD TO CART</button>}
+                            : <button onClick={hdlAddtoCart} className='shadow-md hover:bg-blue-300 bg-regal-blue text-white w-[150px] h-14 rounded-full'>ADD TO CART</button>}
                     </div>
                 </div>
             </div>

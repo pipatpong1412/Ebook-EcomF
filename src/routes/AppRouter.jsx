@@ -1,22 +1,22 @@
 import React, { useContext } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Login from '../components/Login';
-import Register from '../components/Register';
 import AuthContext from '../contexts/AuthContext';
-import Home from '../components/Home';
-import Dashboard from '../components/Dashboard';
-import Profile from '../components/Profile';
-import GetProduct from '../components/ProductDetail'
-import Cart from '../components/Cart';
+import HomePage from '../components/HomePage';
+import DashboardPage from '../components/DashboardPage';
+import LoginPage from '../components/LoginPage';
+import CartPage from '../components/Cart';
+import ProductDetailPage from '../components/ProductDetailPage';
+import ProfilePage from '../components/ProfilePage';
+import RegisterPage from '../components/RegisterPage';
 
 const commonRoutes = [
-    { index: true, element: <Login /> },
-    { path: '/login', element: <Login /> },
-    { path: '/register', element: <Register /> },
-    { path: '/home', element: <Home /> },
-    { path: '/profile', element: <Profile /> },
-    { path: `/product/*`, element: <GetProduct/> },
-    { path: `/cart/*`, element: <Cart/> },
+    { index: true, element: <LoginPage /> },
+    { path: '/login', element: <LoginPage /> },
+    { path: '/register', element: <RegisterPage /> },
+    { path: '/home', element: <HomePage /> },
+    { path: '/profile', element: <ProfilePage /> },
+    { path: `/product/*`, element: <ProductDetailPage/> },
+    { path: `/cart/*`, element: <CartPage/> },
     { path: '*', element: <h3> PAGE NOT FOUND</h3> }
 ];
 
@@ -34,7 +34,7 @@ const adminRoutes = createBrowserRouter([
         element: <Outlet />,
         children: [
             ...commonRoutes,
-            { path: '/dashboard', element: <Dashboard /> }
+            { path: '/dashboard', element: <DashboardPage /> }
         ]
     }
 ]);

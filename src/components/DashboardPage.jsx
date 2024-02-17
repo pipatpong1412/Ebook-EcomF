@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
-import ManageCatetoey from './ManageCategory';
-import ManageProduct from './ManageProduct';
-import ManageUser from './ManageUser';
+import ManageCategoryPage from './ManageCategoryPage';
+import ManageProductPage from './ManageProductPage';
+import ManageUserPage from './ManageUserPage';
 
-export default function Dashboard() {
+export default function DashboardPage() {
 
     const [content, setContent] = useState('');
 
@@ -19,7 +19,7 @@ export default function Dashboard() {
             <div className='justify-between flex items-center relative'>
                 <Sidebar changeContent={hdlLink} />
                 <div className='absolute top-10 left-72 mx-10 w-2/3'>
-                    {content === 'Product' ? <ManageProduct /> : content === 'Category' ? <ManageCatetoey /> : <ManageUser />}
+                    {content === 'Product' ? <ManageProductPage /> : content === 'Category' ? <ManageCategoryPage /> : <ManageUserPage />}
                 </div>
             </div>
         </div>
