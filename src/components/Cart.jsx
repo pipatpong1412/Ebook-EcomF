@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { AuthContextProvider } from '../contexts/AuthContext'
 import CartContext, { CartContextProvider } from '../contexts/CartContext'
@@ -54,7 +54,7 @@ function CartDashboard() {
                         <h1 className="text-2xl font-bold mb-4">CART</h1>
                     </div>
                     <div>
-                        {data?.map(el => (
+                        {product && data?.map(el => (
                             <CartItem key={el.id} productInCart={el} product={product} />
                         ))}
                     </div>
@@ -68,25 +68,33 @@ function CartDashboard() {
 function CartItem({ productInCart, product }) {
     const cartProduct = product?.find(item => item.id === productInCart.productId)
     const { name, price, img } = cartProduct
+    const { delProductInCart, } = useContext(CartContext)
+    const [updateCart, setUpdateCart] = useState(false)
 
+    const hdlDelProductInCart = (e) => {
+        e.preventDefault()
+        delProductInCart(productInCart.productId)
+        setUpdateCart(!updateCart)
+    }
 
     return (
         <div>
-            <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-                <div className='flex items-center justify-between mx-2'>
-                    <div className='flex items-center'>
-                        <img src={img} alt={name} className="w-auto h-20 object-cover mr-4" />
-                        <div className='flex flex-col'>
-                            <h2 className="text-lg font-semibold">{name}</h2>
-                            <h3 className="text-lg font-semibold text-green-600">${price}</h3>
+            {!updateCart && (
+                <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+                    <div className='flex items-center justify-between mx-2'>
+                        <div className='flex items-center'>
+                            <img src={img} alt={name} className="w-auto h-20 object-cover mr-4" />
+                            <div className='flex flex-col'>
+                                <h2 className="text-lg font-semibold">{name}</h2>
+                                <h3 className="text-lg font-semibold text-green-600">${price}</h3>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 text-lg text-dark-blue">
+                            <i onClick={hdlDelProductInCart} className="fa-solid fa-trash hover:text-red-600 cursor-pointer"></i>
                         </div>
                     </div>
-                    <div className="flex gap-3 text-lg text-dark-blue">
-                        <i className="fa-solid fa-trash hover:text-red-600 cursor-pointer"></i>
-                    </div>
                 </div>
-            </div>
-            {/*  */}
+            )}
         </div>
     )
 }
@@ -107,7 +115,7 @@ function SummaryCartProduct({ data, product }) {
             <div className='flex flex-col items-center justify-center'>
                 <p className='hover:text-white underline'><Link to='/home'>Continue Shopping</Link></p>
                 <p>Total Price: ${totalPrice}</p>
-                <p>Total: {totalQty} Items</p>
+                <p>Total Items: {totalQty}</p>
             </div>
         )
     }

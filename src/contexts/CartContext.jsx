@@ -6,6 +6,7 @@ const CartContext = createContext()
 function CartContextProvider(props) {
 
     const [data, setData] = useState(null)
+    const [cartId, setCartId] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -17,8 +18,9 @@ function CartContextProvider(props) {
                 const rs = await axios.get('http://localhost:8000/cart/mycart', {
                     headers: { Authorization: `Bearer ${token}` }
                 })
-                // console.log(rs.data)
-                setData(rs.data)
+                // console.log(rs.data[0].cartId)
+                setData(rs.data);
+                setCartId(rs.data.length === 0 ? null : rs.data[0].cartId)
 
             } catch (error) {
                 alert(error.message)
@@ -46,8 +48,24 @@ function CartContextProvider(props) {
         }
     }
 
+    const delProductInCart = async (productId) => {
+        try {
+            let token = localStorage.getItem('token')
+            if (!token) { return }
+            const rs = await axios.delete(`http://localhost:8000/cart/del/${productId}`,  {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            if (rs.status === 200) {
+                alert('Delete from Cart Successfully')
+            }
+
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     return (
-        <CartContext.Provider value={{ data, loading, addProducttoCart }}>
+        <CartContext.Provider value={{ cartId, data, loading, addProducttoCart, delProductInCart }}>
             {props.children}
         </CartContext.Provider>
     )

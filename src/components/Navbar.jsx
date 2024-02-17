@@ -1,11 +1,28 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
+import CartContext, { CartContextProvider } from '../contexts/CartContext'
 
 export default function Navbar() {
-    const navigate = useNavigate()
     const { user, logout } = useContext(AuthContext)
+
+    return (
+        <div>
+            <CartContextProvider>
+                <NavContent user={user} logout={logout} />
+            </CartContextProvider>
+        </div>
+    )
+
+}
+
+function NavContent({ user, logout }) {
+
+    const { data } = useContext(CartContext)
+    const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [hasProduct, setHasProduct] = useState(false)
+
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen)
@@ -34,7 +51,8 @@ export default function Navbar() {
                 </div>
             </div>
             <div className='flex gap-5 text-2xl text-white cursor-pointer relative'>
-                <i onClick={hdlCart} className="fa-solid fa-cart-shopping  hover:text-gray-500"></i>
+                {hasProduct ? <i onClick={hdlCart} className="fa-solid fa-cart-shopping  hover:text-gray-500 text-red-500"></i>
+                    : <i onClick={hdlCart} className="fa-solid fa-cart-shopping  hover:text-gray-500"></i>}
                 <i className="fa-solid fa-user hover:text-gray-500" onClick={toggleDropdown}></i>
                 {isDropdownOpen && (
                     <div className="absolute right-0 mt-11 w-40 bg-white rounded-lg shadow-lg text-dark-blue text-xl z-10">
@@ -63,6 +81,5 @@ export default function Navbar() {
                 </div>
             </div>
         </div>
-
     )
 }
