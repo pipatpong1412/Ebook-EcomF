@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Navbar from './Navbar'
 import CartContext from '../contexts/CartContext'
 import ProductContext from '../contexts/ProductContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function CartPage() {
     const { data, loading } = useContext(CartContext)
@@ -22,8 +22,8 @@ export default function CartPage() {
             <>
                 <Navbar />
                 <div className='h-screen flex item-center justify-center'>
-                    <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
-                        <div className="flex justify-center items-center flex-col">
+                    <div className="bg-blue-50 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
+                        <div className="flex justify-center items-center flex-col mt-[5%]">
                             <h1 className="text-2xl font-bold mb-4">No Product in Cart</h1>
                             <h3 className='hover:text-white underline'><Link to='/home'>Continue Shopping</Link></h3>
                         </div>
@@ -36,11 +36,11 @@ export default function CartPage() {
             <>
                 <Navbar />
                 <div className='h-screen flex items-center justify-center'>
-                    <div className="bg-blue-200 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
-                        <div className="flex justify-center items-center">
+                    <div className="bg-blue-50 h-screen rounded-lg p-6 shadow-md relative w-full items-center justify-center">
+                        <div className="flex justify-center items-center mt-[5%]">
                             <h1 className="text-2xl font-bold mb-4">CART</h1>
                         </div>
-                        <div>
+                        <div className='flex justify-center items-center'>
                             {product && data?.map(el => (
                                 <CartItem key={el.id} productInCart={el} product={product} />
                             ))}
@@ -55,6 +55,7 @@ export default function CartPage() {
 
 
 function CartItem({ productInCart, product }) {
+
     const cartProduct = product?.find(item => item.id === productInCart.productId)
     const { name, price, img } = cartProduct
     const { delProductInCart, } = useContext(CartContext)
@@ -69,7 +70,7 @@ function CartItem({ productInCart, product }) {
     return (
         <div>
             {!updateCart && (
-                <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+                <div className="bg-white p-4 rounded-lg shadow-md mb-4 w-[800px]">
                     <div className='flex items-center justify-between mx-2'>
                         <div className='flex items-center'>
                             <img src={img} alt={name} className="w-auto h-20 object-cover mr-4" />
@@ -90,6 +91,12 @@ function CartItem({ productInCart, product }) {
 
 function SummaryCartProduct({ data, product }) {
 
+    const navigate = useNavigate()
+
+    const linkToPayment = () => {
+        navigate('/payment')
+    }
+
     if (data && product) {
         const totalPrice = data?.reduce((acc, cartItem) => {
             const productInCart = product.find(item => item.id === cartItem.productId)
@@ -103,8 +110,13 @@ function SummaryCartProduct({ data, product }) {
         return (
             <div className='flex flex-col items-center justify-center'>
                 <p className='hover:text-white underline'><Link to='/home'>Continue Shopping</Link></p>
-                <p>Total Price: ${totalPrice}</p>
                 <p>Total Items: {totalQty}</p>
+                <div className='text-[25px] font-bold text-dark-blue'>
+                    <p>Total Price: <span className='text-green-500'>${totalPrice}</span></p>
+                </div>
+                <div onClick={linkToPayment} className='w-[190px] bg-dark-blue h-12 items-center justify-center flex rounded-full cursor-pointer hover:bg-blue-400'>
+                    <button className='text-white text-xl'>Purchase</button>
+                </div>
             </div>
         )
     }

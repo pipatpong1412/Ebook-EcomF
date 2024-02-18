@@ -11,7 +11,7 @@ export default function HomePage() {
     return (
         <>
             <Navbar />
-            <div className="grid grid-cols-4 gap-6 mt-5 w-[950px] mx-auto relative pb-5">
+            <div className="grid grid-cols-4 gap-6 mt-[4.5%] w-[950px] mx-auto relative pb-5">
                 {product?.map(item => (
                     <HomeItem key={item.id} product={item} category={category} />
                 ))}

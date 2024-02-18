@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import CategoryContext from '../contexts/CategoryContext'
 import CartContext from '../contexts/CartContext'
@@ -67,10 +67,6 @@ function ProductDetail({ product }) {
         setIsAddtoCart(true)
     }
 
-    const hdlPurchase = () => {
-        alert('ใจเย็นพ่อหนุ่ม!!')
-    }
-
     useEffect(() => {
         if (ProductInCart) {
             setIsAddtoCart(true)
@@ -80,8 +76,8 @@ function ProductDetail({ product }) {
     }, [ProductInCart])
 
     return (
-        <div className='flex justify-center items-center h-screen bg-light-blue'>
-            <div className='w-[1280px] bg-white rounded-lg border-gray-500 shadow-md h-[70%] flex -mt-16'>
+        <div className='flex justify-center items-center h-screen bg-blue-50'>
+            <div className='w-[1280px] bg-white rounded-lg border-gray-500 shadow-md h-[70%] flex'>
                 <div className='w-1/2 flex justify-center items-center'>
                     <img src={product.img} alt={product.name} className="w-64 h-auto object-cover" />
                 </div>
@@ -91,11 +87,12 @@ function ProductDetail({ product }) {
                     <p className="text-dark-blue">Category: <span>{categoryName}</span></p>
                     <p className="text-dark-blue">Publisher: {product.publisher}</p>
                     <p className="text-dark-blue">Detail: {product.detail}</p>
-                    <p className="text-dark-blue">Price: <span className='text-green-400 font-bold'>฿{product.price}</span></p>
+                    <p className="text-dark-blue">Price: <span className='text-green-400 font-bold text-2xl'>฿{product.price}</span></p>
                     <div className='flex gap-5'>
-                        <button onClick={hdlPurchase} className='shadow-md hover:bg-blue-300 bg-green-300 text-white w-[150px] h-14 rounded-full'>BUY ฿{product.price}</button>
-                        {isAddtoCart ? <button className='shadow-md  bg-gray-500 text-white w-[150px] h-14 rounded-full'>ADDED IN CART</button>
-                            : <button onClick={hdlAddtoCart} className='shadow-md hover:bg-blue-300 bg-regal-blue text-white w-[150px] h-14 rounded-full'>ADD TO CART</button>}
+                        {isAddtoCart ?
+                            (<button className='shadow-md  bg-gray-500 text-white w-[150px] h-14 rounded-full'>ADDED IN CART</button>)
+                            :
+                            (<button onClick={hdlAddtoCart} className='shadow-md hover:bg-blue-300 bg-regal-blue text-white w-[150px] h-14 rounded-full'>ADD TO CART</button>)}
                     </div>
                 </div>
             </div>
