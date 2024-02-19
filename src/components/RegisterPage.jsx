@@ -22,12 +22,24 @@ export default function RegisterPage() {
             }
             const rs = await axios.post('http://localhost:8000/auth/register', input)
             if (rs.status === 200) {
-                alert('Register Successfully')
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Register Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 navigate('/login')
             }
 
         } catch (error) {
-            alert(error.response.data.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
     return (

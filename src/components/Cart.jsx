@@ -40,7 +40,7 @@ export default function CartPage() {
                         <div className="flex justify-center items-center mt-[5%]">
                             <h1 className="text-2xl font-bold mb-4">CART</h1>
                         </div>
-                        <div className='flex justify-center items-center'>
+                        <div className='flex justify-center items-center flex-col'>
                             {product && data?.map(el => (
                                 <CartItem key={el.id} productInCart={el} product={product} />
                             ))}
@@ -63,7 +63,7 @@ function CartItem({ productInCart, product }) {
 
     const hdlDelProductInCart = (e) => {
         e.preventDefault()
-        delProductInCart(productInCart.productId)
+        delProductInCart(productInCart.id)
         setUpdateCart(!updateCart)
     }
 

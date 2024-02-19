@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import axios from "axios";
+import Swal from 'sweetalert2'
+
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -26,11 +28,24 @@ export default function LoginPage() {
             })
             setUser(rs1.data)
             if (rs1.status === 200) {
-                alert('Login Succesfully')
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Login Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 navigate('/home')
             }
+            
         } catch (error) {
-            alert(error.response.data.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
 
     }

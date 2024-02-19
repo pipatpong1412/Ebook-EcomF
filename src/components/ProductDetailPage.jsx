@@ -49,9 +49,11 @@ export default function ProductDetailPage() {
 function ProductDetail({ product }) {
 
     const { category } = useContext(CategoryContext)
-    const { addProducttoCart, data, cartId } = useContext(CartContext)
+    const { addProducttoCart, data } = useContext(CartContext)
     const [isAddtoCart, setIsAddtoCart] = useState(false)
     const [ProductInCart, setProductInCart] = useState(null)
+
+
 
     useEffect(() => {
         if (typeof data !== 'string') {
@@ -63,7 +65,7 @@ function ProductDetail({ product }) {
     const categoryName = category ? category.find(cat => cat.id === product.categoryId)?.name || '' : ''
 
     const hdlAddtoCart = () => {
-        addProducttoCart(cartId, product.id)
+        addProducttoCart(product)
         setIsAddtoCart(true)
     }
 
