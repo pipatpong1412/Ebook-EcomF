@@ -5,7 +5,7 @@ const CartContext = createContext()
 
 function CartContextProvider(props) {
 
-    const [data, setData] = useState(null)
+    const [cart, setCart] = useState(null)
     const [loading, setLoading] = useState(true)
     const [trigger, setTrigger] = useState(false)
 
@@ -18,7 +18,7 @@ function CartContextProvider(props) {
                 const rs = await axios.get('http://localhost:8000/cart/mycart', {
                     headers: { Authorization: `Bearer ${token}` }
                 })
-                setData(rs.data)
+                setCart(rs.data)
 
             } catch (error) {
                 alert(error.message)
@@ -60,8 +60,23 @@ function CartContextProvider(props) {
         }
     }
 
+    const updateCartStatus = async (cartId) => {
+        try {
+            let token = localStorage.getItem('token')
+            if (!token) { return }
+            await axios.patch(`http://localhost:8000/cart/patch/${cartId}`, {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+                .then(res => setTrigger(prv => !prv))
+            // alert('Remove from Cart Successfully')
+
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     return (
-        <CartContext.Provider value={{ data, loading, addProducttoCart, delProductInCart }}>
+        <CartContext.Provider value={{ cart, loading, addProducttoCart, delProductInCart, updateCartStatus }}>
             {props.children}
         </CartContext.Provider>
     )

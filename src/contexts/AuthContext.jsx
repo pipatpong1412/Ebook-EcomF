@@ -30,10 +30,22 @@ function AuthContextProvider(props) {
     const updateProfile = async (userId, data) => {
         try {
             await axios.patch(`http://localhost:8000/auth/user/patch/profile/${userId}`, data)
-            alert('Update Profile Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Update Profile Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
             
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 

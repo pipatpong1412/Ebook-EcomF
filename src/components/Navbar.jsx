@@ -6,22 +6,22 @@ import CartContext from '../contexts/CartContext'
 export default function Navbar() {
 
     const { user, logout } = useContext(AuthContext)
-    const { data } = useContext(CartContext)
+    const { cart } = useContext(CartContext)
 
     return (
         <div>
-            {user && data && <NavContent user={user} logout={logout} data={data} />}
+            {user && cart && <NavContent user={user} logout={logout} cart={cart} />}
         </div>
     )
 
 }
 
-function NavContent({ user, logout, data }) {
+function NavContent({ user, logout, cart }) {
 
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-    const countData = data.length.toString()
+    const countData = cart.length.toString()
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen)
@@ -40,6 +40,10 @@ function NavContent({ user, logout, data }) {
         navigate('/cart')
     }
 
+    const hdlShelf = () => {
+        navigate('/shelf')
+    }
+
     const hdlProfile = () => {
         navigate('/profile')
     }
@@ -56,7 +60,7 @@ function NavContent({ user, logout, data }) {
                 </div>
                 <div className='flex gap-5 text-2xl text-white cursor-pointer relative items-center justify-center'>
                     <div className='flex gap-5 items-center justify-center'>
-                        {data && data.length > 0 ?
+                        {cart && cart.length > 0 ?
                             <div className="relative">
                                 <i onClick={hdlCart} className="fa-solid fa-cart-shopping hover:text-dark-blue"></i>
                                 <div className={`absolute -top-1 -right-1 bg-red-500 text-xs text-white rounded-full w-5 h-5 flex items-center justify-center`}>{countData}</div>
@@ -79,7 +83,7 @@ function NavContent({ user, logout, data }) {
                                 </div>
                                 <div className='flex pl-2 items-center hover:bg-gray-100'>
                                     <i className="fa-solid fa-book-open"></i>
-                                    <div className="py-2 px-4 cursor-pointer">My Shelf</div>
+                                    <div onClick={hdlShelf} className="py-2 px-4 cursor-pointer">My Shelf</div>
                                 </div>
                                 <div className='flex pl-2 items-center hover:bg-red-500 rounded-b-lg'>
                                     <i className="fa-solid fa-right-from-bracket"></i>
