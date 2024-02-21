@@ -44,8 +44,8 @@ function PaymentContent({ payment, cart }) {
     const hdlConfirm = (e) => {
         e.preventDefault()
         if (paymentData.method !== '') {
-            purchasePayment(paymentData)
             updateCartStatus(payment.cartId)
+            purchasePayment(paymentData)
             createShelf(cart.productId)
             navigate('/home')
         } else {
