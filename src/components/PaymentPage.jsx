@@ -48,6 +48,7 @@ function PaymentContent({ payment, cart }) {
             purchasePayment(paymentData)
             createShelf(cart.productId)
             navigate('/home')
+            
         } else {
             Swal.fire({
                 position: "center",

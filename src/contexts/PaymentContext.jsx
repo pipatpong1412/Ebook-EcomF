@@ -17,8 +17,15 @@ function PaymentContextProvider(props) {
                 })
                 // .then(res => setTrigger(prv => !prv))
                 setPayment(rs.data)
+
             } catch (error) {
-                alert(error)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
 
@@ -34,7 +41,13 @@ function PaymentContextProvider(props) {
             })
                 .then(res => setTrigger(prv => !prv))
         } catch (error) {
-            alert(error)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 

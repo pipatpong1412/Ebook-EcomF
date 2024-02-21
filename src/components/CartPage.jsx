@@ -110,7 +110,6 @@ function SummaryCartProduct({ cart, product }) {
     }
 
     const hdlCreatePayment = () => {
-        // updateCartStatus(cartId)
         createPayment(paymentData)
         navigate('/payment')
     }

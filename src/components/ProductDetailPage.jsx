@@ -6,6 +6,7 @@ import CategoryContext from '../contexts/CategoryContext'
 import CartContext from '../contexts/CartContext'
 import ShelfContext from '../contexts/ShelfContext'
 import { saveAs } from 'file-saver'
+import Swal from 'sweetalert2'
 
 
 
@@ -26,7 +27,15 @@ export default function ProductDetailPage() {
                 setLoading(!loading)
 
             } catch (error) {
-                alert(error.message)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+
             } finally {
                 setLoading(false)
             }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 const ShelfContext = createContext()
 function ShelfContextProvider(props) {
@@ -19,7 +20,14 @@ function ShelfContextProvider(props) {
                 setShelfProduct(rs.data)
 
             } catch (error) {
-                alert(error)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
             } finally {
                 setLoading(false)
             }
@@ -37,7 +45,13 @@ function ShelfContextProvider(props) {
             })
                 .then(res => setTrigger(prv => !prv))
         } catch (error) {
-            alert(error)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 

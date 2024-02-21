@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const ProductContext = createContext();
 
@@ -15,7 +16,13 @@ function ProductContextProvider(props) {
                 setProduct(rs.data)
 
             } catch (error) {
-                alert(error.message)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
 
@@ -28,10 +35,22 @@ function ProductContextProvider(props) {
         try {
             await axios.post('http://localhost:8000/product/create', newProduct)
                 .then(res => setTrigger(prv => !prv))
-            alert('Create Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Create Product Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -39,10 +58,22 @@ function ProductContextProvider(props) {
         try {
             await axios.delete(`http://localhost:8000/product/del/${productId}`)
                 .then(res => setTrigger(prv => !prv))
-            alert('Delete Product Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Delete Product Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -50,10 +81,22 @@ function ProductContextProvider(props) {
         try {
             await axios.patch(`http://localhost:8000/product/patch/${productId}`, product)
                 .then(res => setTrigger(prv => !prv))
-            alert('Update Product Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Update Product Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 

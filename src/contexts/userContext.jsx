@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 const UserContext = createContext()
 
@@ -12,10 +13,22 @@ function UserContextProvider(props) {
         try {
             await axios.delete(`http://localhost:8000/auth/user/del/${userId}`)
                 .then(res => setTrigger(prv => !prv))
-            alert('Delete User Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Delete User Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -23,10 +36,22 @@ function UserContextProvider(props) {
         try {
             await axios.patch(`http://localhost:8000/auth/user/patch/role/${userId}`, role)
                 .then(res => setTrigger(prv => !prv))
-            alert('Update Role Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Update Role Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -37,7 +62,13 @@ function UserContextProvider(props) {
                 setUser(rs.data)
 
             } catch (error) {
-                alert(error.message)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
 

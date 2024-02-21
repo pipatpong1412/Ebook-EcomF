@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const CategoryContext = createContext();
 
@@ -11,10 +12,22 @@ function CategoryContextProvider(props) {
         try {
             await axios.post('http://localhost:8000/category/create', newCategory)
                 .then(res => setTrigger(prv => !prv))
-            alert('Create Category Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Create Category Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
 
     }
@@ -23,10 +36,22 @@ function CategoryContextProvider(props) {
         try {
             await axios.delete(`http://localhost:8000/category/del/${categoryId}`)
                 .then(res => setTrigger(prv => !prv))
-            alert('Delete Category Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Delete Category Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -34,10 +59,22 @@ function CategoryContextProvider(props) {
         try {
             await axios.patch(`http://localhost:8000/category/patch/${id}`, category)
                 .then(res => setTrigger(prv => !prv))
-            alert('Update Category Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Update Category Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
 
     }
@@ -49,7 +86,13 @@ function CategoryContextProvider(props) {
                 setCategory(rs.data)
 
             } catch (error) {
-                alert(error.message)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
 

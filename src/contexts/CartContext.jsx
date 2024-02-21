@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 const CartContext = createContext()
 
@@ -21,7 +22,14 @@ function CartContextProvider(props) {
                 setCart(rs.data)
 
             } catch (error) {
-                alert(error.message)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
             } finally {
                 setLoading(false)
             }
@@ -39,9 +47,21 @@ function CartContextProvider(props) {
                 headers: { Authorization: `Bearer ${token}` },
             })
                 .then(res => setTrigger(prv => !prv))
-            alert('Add to Cart Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Add to Cart Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -53,10 +73,22 @@ function CartContextProvider(props) {
                 headers: { Authorization: `Bearer ${token}` }
             })
                 .then(res => setTrigger(prv => !prv))
-            alert('Remove from Cart Successfully')
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Remove from Cart Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            })
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 
@@ -71,7 +103,13 @@ function CartContextProvider(props) {
             // alert('Remove from Cart Successfully')
 
         } catch (error) {
-            alert(error.message)
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${error.response.data.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     }
 

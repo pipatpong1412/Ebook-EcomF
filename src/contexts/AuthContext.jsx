@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { createContext, useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 
 const AuthContext = createContext()
@@ -19,7 +20,15 @@ function AuthContextProvider(props) {
                 })
                 setUser(rs.data)
             } catch (error) {
-                console.error(error)
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+
             } finally {
                 setLoading(false)
             }
