@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import CategoryContext from '../contexts/CategoryContext'
 import CartContext from '../contexts/CartContext'
 import ShelfContext from '../contexts/ShelfContext'
+import { saveAs } from 'file-saver'
+
+
 
 export default function ProductDetailPage() {
     const location = useLocation()
@@ -57,8 +60,6 @@ function ProductDetail({ product, shelfProduct }) {
     const [isAddtoCart, setIsAddtoCart] = useState(false)
     const [ProductInCart, setProductInCart] = useState(null)
 
-
-
     useEffect(() => {
         if (typeof cart !== 'string') {
             const productInCart = cart?.find(cat => cat.productId === product.id)
@@ -69,16 +70,19 @@ function ProductDetail({ product, shelfProduct }) {
     const categoryName = category ? category.find(cat => cat.id === product.categoryId)?.name || '' : ''
     const paidProduct = shelfProduct ? shelfProduct.find(cat => cat.productId === product.id) : ''
 
-    // console.log(paidProduct)
-
     const hdlAddtoCart = () => {
         addProducttoCart(product)
         setIsAddtoCart(true)
     }
+    // const hdlDownload = () => {
+    //     saveAs(product.url, `${product.name}.txt`)
+    // }
 
     const hdlDownload = () => {
-        alert(555)
+        const blob = new Blob([product.name], { type: 'text/plain;charset=utf-8' });
+        saveAs(blob, `${product.name}.txt`);
     }
+    
 
     useEffect(() => {
         if (ProductInCart) {

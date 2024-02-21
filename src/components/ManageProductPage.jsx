@@ -163,6 +163,7 @@ function FormEditProduct({ product, onClose }) {
         price: product.price,
         author: product.author,
         publisher: product.publisher,
+        url: product.url,
         categoryId: product.categoryId
     })
 
@@ -217,6 +218,11 @@ function FormEditProduct({ product, onClose }) {
                     </div>
                     <div className="mb-4">
                         <input name="publisher" value={input.publisher} onChange={hdlChange} placeholder="Publisher" type="text"
+                            className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <input name="url" value={input.url} onChange={hdlChange} placeholder="URL download" type="text"
                             className="block w-full py-2.5 pl-3 pr-9 text-sm text-regal-blue rounded-xl border-2 border-regal-blue"
                         />
                     </div>
