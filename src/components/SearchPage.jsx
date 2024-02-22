@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Navbar from './Navbar'
-import HomePage from './HomePage'
+import SearchHomePage from './SearchHomePage'
 
 export default function SearchPage() {
 
-    const [filterText, setFilterText] = useState('')
-
     return (
-        <div>
-            <Navbar setFilterText={setFilterText} filterText={filterText} />
-            <HomePage filterText={filterText} />
-        </div>
+        <>
+        <Navbar/>
+        <SearchHomePage/>
+        </>
     )
 }

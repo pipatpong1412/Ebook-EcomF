@@ -2,24 +2,25 @@ import React, { useContext, useState } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import CartContext from '../contexts/CartContext'
+import SearchContext from '../contexts/SearchContext'
 
-export default function Navbar({ filterText, setFilterText }) {
+export default function Navbar() {
 
     const { user, logout } = useContext(AuthContext)
     const { cart } = useContext(CartContext)
 
     return (
         <div>
-            {user && cart && setFilterText && <NavContent user={user} logout={logout} cart={cart} 
-            setFilterText={setFilterText} filterText={filterText} />}
+            {user && cart && <NavContent user={user} logout={logout} cart={cart} />}
         </div>
     )
 
 }
 
-function NavContent({ user, logout, cart, setFilterText, filterText }) {
+function NavContent({ user, logout, cart }) {
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const { setSearch, search, run } = useContext(SearchContext)
 
     const countData = cart.length.toString()
 
@@ -45,7 +46,15 @@ function NavContent({ user, logout, cart, setFilterText, filterText }) {
     }
 
     const hdlChange = (e) => {
-        setFilterText(e.target.value)
+        setSearch(e.target.value)
+        console.log(search);
+    }
+
+    const hdlSearch = (e) => {
+        e.preventDefault()
+        run()
+        navigate('/home/search'+ `?product=${search}`)
+        setSearch('')
     }
 
     return (
@@ -53,9 +62,9 @@ function NavContent({ user, logout, cart, setFilterText, filterText }) {
             <div className="h-16 bg-regal-blue px-4 justify-between flex items-center w-full fixed top-0 z-50">
                 <div className='text-white text-4xl'><Link to='/home'>eBooks</Link></div>
                 <div className='relative w-1/3'>
-                    <input type='text' onChange={hdlChange} value={filterText} className='bg-white rounded-full h-11 w-full px-3 border-gray-300 pl-10' placeholder='Search...' />
+                    <input onChange={hdlChange} value={search.trim()} type='text' className='bg-white rounded-full h-11 w-full px-3 border-gray-300 pl-10' placeholder='Search...' />
                     <div className='absolute top-1/2 transform -translate-y-1/2 left-3 text-gray-400'>
-                        <i className="fa-solid fa-magnifying-glass"></i>
+                        <i onClick={hdlSearch} className="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
                 <div className='flex gap-5 text-2xl text-white cursor-pointer relative items-center justify-center'>
