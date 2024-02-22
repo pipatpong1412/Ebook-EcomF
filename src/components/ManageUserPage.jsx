@@ -10,7 +10,7 @@ export default function ManageUserPage() {
                 <h1 className="text-2xl font-bold mb-4">Manage User</h1>
             </div>
             <div>
-                {user?.map(el => (
+                {user && user.map(el => (
                     <UserList key={el.id} user={el} />
                 ))}
             </div>

@@ -16,8 +16,6 @@ export default function ProductDetailPage() {
     const [loading, setLoading] = useState(true)
     const { shelfProduct } = useContext(ShelfContext)
 
-    // console.log(shelfProduct);
-
     useEffect(() => {
         const getProductById = async () => {
             try {
@@ -69,6 +67,8 @@ function ProductDetail({ product, shelfProduct }) {
     const [isAddtoCart, setIsAddtoCart] = useState(false)
     const [ProductInCart, setProductInCart] = useState(null)
 
+    // console.log(cart.length);
+
     useEffect(() => {
         if (typeof cart !== 'string') {
             const productInCart = cart?.find(cat => cat.productId === product.id)
@@ -83,15 +83,11 @@ function ProductDetail({ product, shelfProduct }) {
         addProducttoCart(product)
         setIsAddtoCart(true)
     }
-    // const hdlDownload = () => {
-    //     saveAs(product.url, `${product.name}.txt`)
-    // }
 
     const hdlDownload = () => {
         const blob = new Blob([product.name], { type: 'text/plain;charset=utf-8' });
         saveAs(blob, `${product.name}.txt`);
     }
-    
 
     useEffect(() => {
         if (ProductInCart) {

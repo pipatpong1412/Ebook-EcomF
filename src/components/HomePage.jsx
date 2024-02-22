@@ -8,14 +8,10 @@ export default function HomePage() {
     const { product } = useContext(ProductContext)
     const { category } = useContext(CategoryContext)
 
-    // const filteredProducts = product.filter(item =>
-    //     item.name.toLowerCase().includes(filterText.toLowerCase().trim())
-    // );
-
     return (
         <>
             <Navbar />
-            <div className="grid grid-cols-4 gap-6 mt-[4.5%] w-[950px] mx-auto relative pb-5">
+            <div className="grid grid-cols-4 gap-6 my-auto mt-[4.5%] w-[950px] mx-auto relative pb-5">
                 {product && product.map(item => (
                     <HomeItem key={item.id} product={item} category={category} />
                 ))}
