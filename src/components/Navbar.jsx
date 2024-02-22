@@ -1,23 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import CartContext from '../contexts/CartContext'
 
-export default function Navbar() {
+export default function Navbar({ filterText, setFilterText }) {
 
     const { user, logout } = useContext(AuthContext)
     const { cart } = useContext(CartContext)
 
     return (
         <div>
-            {user && cart && <NavContent user={user} logout={logout} cart={cart} />}
+            {user && cart && setFilterText && <NavContent user={user} logout={logout} cart={cart} 
+            setFilterText={setFilterText} filterText={filterText} />}
         </div>
     )
 
 }
 
-function NavContent({ user, logout, cart }) {
-
+function NavContent({ user, logout, cart, setFilterText, filterText }) {
     const navigate = useNavigate()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
@@ -32,10 +32,6 @@ function NavContent({ user, logout, cart }) {
         navigate('/')
     }
 
-    const hdlSearch = () => {
-        alert('In Operation...')
-    }
-
     const hdlCart = () => {
         navigate('/cart')
     }
@@ -48,12 +44,16 @@ function NavContent({ user, logout, cart }) {
         navigate('/profile')
     }
 
+    const hdlChange = (e) => {
+        setFilterText(e.target.value)
+    }
+
     return (
         <div className=''>
             <div className="h-16 bg-regal-blue px-4 justify-between flex items-center w-full fixed top-0 z-50">
                 <div className='text-white text-4xl'><Link to='/home'>eBooks</Link></div>
                 <div className='relative w-1/3'>
-                    <input onClick={hdlSearch} className='bg-white rounded-full h-11 w-full px-3 border-gray-300 pl-10' placeholder='Search...' />
+                    <input type='text' onChange={hdlChange} value={filterText} className='bg-white rounded-full h-11 w-full px-3 border-gray-300 pl-10' placeholder='Search...' />
                     <div className='absolute top-1/2 transform -translate-y-1/2 left-3 text-gray-400'>
                         <i className="fa-solid fa-magnifying-glass"></i>
                     </div>

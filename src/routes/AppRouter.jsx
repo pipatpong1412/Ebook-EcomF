@@ -10,12 +10,14 @@ import ProfilePage from '../components/ProfilePage';
 import RegisterPage from '../components/RegisterPage';
 import PaymentPage from '../components/PaymentPage';
 import ShelfPage from '../components/ShelfPage';
+import SearchPage from '../components/SearchPage';
 
 const commonRoutes = [
     { index: true, element: <LoginPage /> },
     { path: '/login', element: <LoginPage /> },
     { path: '/register', element: <RegisterPage /> },
-    { path: '/home', element: <HomePage /> },
+    // { path: '/home', element: <HomePage /> },
+    { path: '/home', element: <SearchPage /> },
     { path: '/profile', element: <ProfilePage /> },
     { path: `/product/*`, element: <ProductDetailPage/> },
     { path: `/cart/*`, element: <CartPage/> },

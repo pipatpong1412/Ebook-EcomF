@@ -4,20 +4,23 @@ import ProductContext from "../contexts/ProductContext"
 import CategoryContext from '../contexts/CategoryContext'
 import { useNavigate } from 'react-router-dom'
 
-export default function HomePage() {
+export default function HomePage({ filterText }) {
     const { product } = useContext(ProductContext)
     const { category } = useContext(CategoryContext)
+
+    const filteredProducts = product.filter(item =>
+        item.name.toLowerCase().includes(filterText.toLowerCase().trim())
+    );
 
     return (
         <>
             <Navbar />
             <div className="grid grid-cols-4 gap-6 mt-[4.5%] w-[950px] mx-auto relative pb-5">
-                {product?.map(item => (
+                {filteredProducts.map(item => (
                     <HomeItem key={item.id} product={item} category={category} />
                 ))}
             </div>
         </>
-
     )
 }
 
@@ -60,3 +63,9 @@ function HomeItem({ product, category }) {
         </div>
     )
 }
+
+
+// const filterProduct = product?.reduce((a, c) => {
+//     if ((c.name.toLowerCase().includes(filterText.toLowerCase().trim()))) {return a}
+//     a.output.push(<HomeItem key={c.id} product={c} category={category} />)
+// },{ output: []})
