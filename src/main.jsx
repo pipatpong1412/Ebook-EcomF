@@ -10,23 +10,26 @@ import { CartContextProvider } from './contexts/CartContext.jsx'
 import { PaymentContextProvider } from './contexts/PaymentContext.jsx'
 import { ShelfContextProvider } from './contexts/ShelfContext.jsx'
 import { SearchContextProvider } from './contexts/SearchContext.jsx'
+import { AdminContextProvider } from './contexts/AdminContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthContextProvider>
     <UserContextProvider>
-      <SearchContextProvider>
-        <ProductContextProvider>
-          <CategoryContextProvider>
-            <PaymentContextProvider>
-              <CartContextProvider>
-                <ShelfContextProvider>
-                  <App />
-                </ShelfContextProvider>
-              </CartContextProvider>
-            </PaymentContextProvider>
-          </CategoryContextProvider>
-        </ProductContextProvider>
-      </SearchContextProvider>
+      <AdminContextProvider>
+        <SearchContextProvider>
+          <ProductContextProvider>
+            <CategoryContextProvider>
+              <PaymentContextProvider>
+                <CartContextProvider>
+                  <ShelfContextProvider>
+                    <App />
+                  </ShelfContextProvider>
+                </CartContextProvider>
+              </PaymentContextProvider>
+            </CategoryContextProvider>
+          </ProductContextProvider>
+        </SearchContextProvider>
+      </AdminContextProvider>
     </UserContextProvider>
   </AuthContextProvider>
 )

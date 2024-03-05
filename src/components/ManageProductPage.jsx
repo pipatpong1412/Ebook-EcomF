@@ -1,13 +1,23 @@
 import React, { useContext, useState } from 'react'
 import ProductContext from '../contexts/ProductContext'
 import CategoryContext from '../contexts/CategoryContext'
+import AdminContext from '../contexts/AdminContext'
 
 export default function ManageProductPage() {
+    const { mProduct, skProduct, setSkProduct } = useContext(AdminContext)
     const { product } = useContext(ProductContext)
     const [showForm, setShowForm] = useState(false)
 
     const toggleAddForm = () => {
         setShowForm(!showForm)
+    }
+
+    const nextPage = () => {
+        setSkProduct(skip => skip + 4)
+    }
+
+    const prvPage = () => {
+        setSkProduct(skip => skip - 4)
     }
 
     return (
@@ -19,17 +29,23 @@ export default function ManageProductPage() {
                 </div>
             </div>
             <div>
-                {product && product.map((item) => (
-                    <ProductItem key={item.id} product={item} />
+                {mProduct && mProduct.map((item) => (
+                    <ProductItem key={item.id} mProduct={item} />
                 ))}
             </div>
             {showForm && <FormAddProduct onClose={toggleAddForm} />}
+            <div className='flex gap-2 justify-end'>
+                {skProduct <= 3 ? <button hidden className='w-[70px] h-[40px] shadow-md rounded-full bg-white text-dark-blue hover:bg-dark-blue hover:text-white'><i className="fa-solid fa-arrow-left"></i></button>
+                    : <button onClick={prvPage} className='w-[70px] h-[40px] shadow-md rounded-full bg-white text-dark-blue hover:bg-dark-blue hover:text-white'><i className="fa-solid fa-arrow-left"></i></button>}
+                {(skProduct + 4) <= product.length ? <button onClick={nextPage} className='w-[70px] h-[40px] shadow-md rounded-full bg-white text-dark-blue hover:bg-dark-blue hover:text-white'><i className="fa-solid fa-arrow-right"></i></button>
+                    : <button hidden className='w-[70px] h-[40px] shadow-md rounded-full bg-white text-dark-blue hover:bg-dark-blue hover:text-white'><i className="fa-solid fa-arrow-right"></i></button>}
+            </div>
         </div>
     )
 }
 
 
-function ProductItem({ product }) {
+function ProductItem({ mProduct }) {
 
     const { deleteProduct } = useContext(ProductContext)
     const [isUpdateProduct, setIsUpdateProduct] = useState(false)
@@ -39,7 +55,7 @@ function ProductItem({ product }) {
     }
 
     const hdlDelete = () => {
-        deleteProduct(product.id)
+        deleteProduct(mProduct.id)
     }
 
     const cancelUpdate = () => {
@@ -52,10 +68,10 @@ function ProductItem({ product }) {
                 {!isUpdateProduct ? (
                     <div className='flex items-center justify-between'>
                         <div className='flex items-center'>
-                            <img src={product.img} alt={product.name} className="w-auto h-20 object-cover mr-4" />
+                            <img src={mProduct.img} alt={mProduct.name} className="w-auto h-20 object-cover mr-4" />
                             <div className='flex flex-col'>
-                                <h2 className="text-lg font-semibold">{product.name}</h2>
-                                <h3 className="text-sm font-semibold">${product.price}</h3>
+                                <h2 className="text-lg font-semibold">{mProduct.name}</h2>
+                                <h3 className="text-sm font-semibold">${mProduct.price}</h3>
                             </div>
                         </div>
                         <div className="flex gap-3 text-lg text-dark-blue">
@@ -64,7 +80,7 @@ function ProductItem({ product }) {
                         </div>
                     </div>
                 ) : (
-                    <FormEditProduct product={product} onClose={cancelUpdate} />
+                    <FormEditProduct mProduct={mProduct} onClose={cancelUpdate} />
                 )}
             </div>
         </div>
